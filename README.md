@@ -1,0 +1,41 @@
+# JOSA Members Hub Web
+
+The web client for the JOSA members hub.
+
+## Running Locally
+
+1. Install Node - at least `v8.9.0` - we recommend you have the latest version installed.
+
+2. Run `npm install` to install project dependencies.
+
+```sh
+cd hub-web/
+npm install
+```
+
+3. Run `npm run dev` to start the development server.
+
+## Building for production
+
+
+1. Run `npm run build` to generate a `production` build in the `.nuxt` directory.
+
+
+## Release History
+
+
+## Meta
+
+Jordan Open Source Association – [@jo_osa](https://twitter.com/jo_osa)
+
+Distributed under the XYZ license. See ``LICENSE`` for more information.
+
+[https://github.com/jordanopensource/](https://github.com/jordanopensource/)
+
+## Contributing
+
+1. Fork it (<https://github.com/jordanopensource/josa-portal-web/fork>)
+2. Create your feature branch (`git checkout -b feature/fooBar`)
+3. Commit your changes (`git commit -am 'Add some fooBar'`)
+4. Push to the branch (`git push origin feature/fooBar`)
+5. Create a new Pull Request

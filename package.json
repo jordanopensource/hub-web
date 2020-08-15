@@ -1,0 +1,20 @@
+{
+  "name": "hub-web",
+  "version": "1.0.0",
+  "description": "The web client for the JOSA members hub",
+  "author": "JOSA",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.14.1",
+    "@nuxtjs/axios": "^5.3.6"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^3.0.0"
+  }
+}
