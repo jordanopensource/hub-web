@@ -1,7 +1,8 @@
 <template>
   <div :dir="$dir()">
     <mainHeader />
-    <nuxt class="bg-josa-warm-grey-light pb-8" />
+    <FlashMessage :position="'right top'" />
+    <nuxt class="bg-josa-warm-grey-light" />
     <mainFooter />
   </div>
 </template>

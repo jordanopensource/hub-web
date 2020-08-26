@@ -23,7 +23,11 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#3897c0' },
+  loading: {
+    color: '#3897c0',
+    height: '4px',
+    continuous: 'true'
+  },
   /*
   ** Global CSS
   */
@@ -42,7 +46,8 @@ export default {
   { src: '~/plugins/datetime-filter' },
   { src: '~/plugins/vue2-filters' },
   { src: '~/plugins/string-filters' },
-  { src: '~/plugins/i18n' }
+  { src: '~/plugins/i18n' },
+  { src: '~/plugins/flash-message.js', mode: 'client' }
 ],
   /*
   ** Nuxt.js dev-modules
@@ -60,10 +65,15 @@ export default {
     '@nuxtjs/axios',
     'nuxt-i18n',
     '@nuxtjs/moment',
-    'nuxt-fontawesome'
+    'nuxt-fontawesome',
+    '@nuxtjs/markdownit',
   ],
   fontawesome: {
     imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      },
       {
         set:'@fortawesome/free-brands-svg-icons',
         icons: ['fab']
@@ -103,6 +113,16 @@ export default {
   moment: {
     defaultLocale: 'en',
     locales: ['ar']
+  },
+  markdownit: {
+    injected: true,
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    use: [
+      'markdown-it-div',
+      'markdown-it-attrs'
+    ]
   },
   /*
   ** Axios module configuration

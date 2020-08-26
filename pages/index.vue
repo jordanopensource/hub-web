@@ -2,9 +2,7 @@
   <div class="container">
     <div class="my-12 bg-white">
       <!-- Banner -->
-      <div class="row">
         <pageBanner :pageMeta="registerMeta" />
-      </div>
       <!-- Registration Form -->
       <div class="row">
         <registrationForm @submit="onSubmitted" />
