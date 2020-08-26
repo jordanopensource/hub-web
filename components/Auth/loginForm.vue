@@ -43,7 +43,7 @@
               sameSite: 'lax',
               secure: true
             }) // saving token in cookie for server rendering
-            this.$router.push('/')
+            this.$router.back()
           })
           .catch(error => {
             console.log('An error occurred:', error.response);
