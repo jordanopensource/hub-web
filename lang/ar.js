@@ -46,5 +46,20 @@ export default {
   pagination: {
     next: 'التالي',
     prev: 'السابق'
+  },
+  // Tasks
+  tasks: {
+    all: 'الجميع',
+    due: 'موعد الإنهاء',
+    open: 'متاح',
+    closed: 'مغلق',
+    status: 'الحالة',
+    apply: 'تقديم طلب',
+    assigned: 'معيّن',
+    alreadyApplied: 'لقد قدمت طلباً مسبقاً'
+  },
+  // Messages
+  msg: {
+    applySuccess: 'تم تقديم الطلب بنجاح. سيتم التواصل معك من قبل فريق جوسا.'
   }
 }

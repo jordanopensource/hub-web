@@ -230,6 +230,26 @@ a.active {
 
 /*****/
 
+/* Status */
 .closed {
-  @apply uppercase bg-red-700 text-white px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+  @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
 }
+.open {
+  @apply uppercase text-green-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
+.assigned {
+  @apply uppercase text-josa-blue-dark px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
+/*****/
+
+/* Flash messages */
+._vue-flash-msg-body._vue-flash-msg-body_success {
+	border: 1px solid #1a485b !important;
+	background-color: #3897c0 !important;
+}
+
+._vue-flash-msg-body._vue-flash-msg-body_success ._vue-flash-msg-body__content {
+	border-left: 5px solid #1a485b !important;
+}
+
+/*****/

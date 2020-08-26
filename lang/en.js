@@ -98,5 +98,20 @@ export default {
     ar: '(Arabic)',
     optional: '(Optional)',
     submit: 'Submit'
+  },
+  // Tasks
+  tasks: {
+    all: 'All Tasks',
+    due: 'Due Date',
+    open: 'Open',
+    closed: 'Closed',
+    status: 'Status',
+    apply: 'Apply',
+    assigned: 'Assigned',
+    alreadyApplied: 'You\'ve already applied for this task.'
+  },
+  // Messages
+  msg: {
+    applySuccess: 'Thank you for applying. Our team will contact you soon.'
   }
 }
