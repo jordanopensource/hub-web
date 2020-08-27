@@ -1,13 +1,16 @@
 <template>
   <div class="input-control">
     <div class="label">
-    <label><slot name="label" /></label>
-    <p class="subLabel"><slot name="sub" /></p>
+      <label>
+        <slot name="label" /></label>
+      <p class="subLabel">
+        <slot name="sub" />
+      </p>
     </div>
     <input v-if="controlType === 'input'" v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"
       :placeholder="placeholder" :required="required">
-    <input v-if="controlType === 'date'" type="date" v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"
-      :placeholder="placeholder" :required="required">
+    <input v-if="controlType === 'date'" type="date" v-bind="$attrs" :value="value"
+      @input="$emit('input', $event.target.value)" :placeholder="placeholder" :required="required">
     <input v-if="controlType === 'email'" type="email" v-bind="$attrs" :value="value"
       @input="$emit('input', $event.target.value)" :placeholder="placeholder" :required="required">
     <input v-if="controlType === 'password'" type="password" v-bind="$attrs" :value="value"
@@ -43,6 +46,11 @@
 </script>
 
 <style scoped>
+
+  .input-control {
+    @apply mb-4;
+  }
+
   .input-control input,
   .input-control textarea {
     @apply p-3 bg-josa-warm-grey-light;
@@ -61,15 +69,17 @@
     @apply bg-josa-warm-grey;
     outline: none;
   }
+
   .subLabel {
     @apply text-sm inline;
   }
+
   label {
     @apply inline;
   }
 
   input[type="date"] {
-    @apply uppercase
+    @apply uppercase;
   }
 
 </style>

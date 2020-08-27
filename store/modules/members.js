@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const state = {
   loadedMembers: [],
-  membersCount: 1
+  membersCount: 1,
+  regRes: null
 };
 
 const getters = {
@@ -12,7 +13,11 @@ const getters = {
   },
   membersCount(state) {
     return (state.membersCount)
-  }
+  },
+  regRes(state) {
+    return (state.regRes)
+  },
+
 };
 
 const mutations = {
@@ -24,7 +29,10 @@ const mutations = {
   },
   addMember(state, user) {
     state.loadedMembers.push(user)
-  }
+  },
+  setRegRes(state, res) {
+    state.regRes = res
+  },
 };
 
 const actions = {
@@ -51,8 +59,14 @@ const actions = {
       })
       .catch(e => context.error(e));
   },
-  newUser(vuexContext, user) {
-    return axios.post(process.env.baseUrl + "/auth/local/register", user)
+  async newUser(vuexContext, user) {
+    await axios.post(process.env.baseUrl + "/auth/local/register", user)
+    .then(res=>{
+      vuexContext.commit("setRegRes", res);
+    })
+    .catch(error=>{
+      vuexContext.commit("setRegRes", error.response);
+    })
   },
 };
 

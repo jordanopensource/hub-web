@@ -88,18 +88,18 @@
     data() {
       return {
         user: {
-          fullName_en: '',
-          fullName_ar: '',
-          gender: '',
-          email: '',
-          phone: '',
-          occupation: '',
-          major: '',
-          university: '',
-          position: '',
-          organization: '',
-          gradYear: '',
-          birthDate: ''
+          fullName_en: null,
+          fullName_ar: null,
+          gender: null,
+          email: null,
+          phone: null,
+          occupation: null,
+          major: null,
+          university: null,
+          position: null,
+          organization: null,
+          gradYear: null,
+          birthDate: null
         }
       }
     },
@@ -119,11 +119,16 @@
         return this.$options.filters.generatePassword(16)
       },
       newUser() {
-        return {
-          ...this.user,
-          username: this.generateUsername(),
-          password: this.generatePassword()
+        var newUser = {}
+        const user = this.user
+        for (var key in user) {
+          if (user.hasOwnProperty(key) && user[key] != null) {
+            newUser[key] = user[key]
+          }
         }
+        newUser.username = this.generateUsername();
+        newUser.password = this.generatePassword();
+        return newUser
       }
     }
   };
@@ -156,7 +161,7 @@
   }
 
   .input-control {
-    @apply w-full flex flex-wrap items-center mb-4;
+    @apply w-full flex flex-wrap items-center;
   }
 
   .input-control>>>input {

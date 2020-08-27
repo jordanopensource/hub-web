@@ -2,7 +2,7 @@
   <div class="container">
     <div class="my-12 bg-white">
       <!-- Banner -->
-        <pageBanner :pageMeta="registerMeta" />
+      <pageBanner :pageMeta="registerMeta" />
       <!-- Registration Form -->
       <div class="row">
         <registrationForm @submit="onSubmitted" />
@@ -29,9 +29,22 @@
       }
     },
     methods: {
-      onSubmitted(user) {
-        this.$store.dispatch("newUser", user).then(() => {
-          this.$router.push("/members");
+      async onSubmitted(user) {
+        await this.$store.dispatch("newUser", user)
+          .then(() => {
+            const regRes = this.$store.getters.regRes;
+            if (regRes.status != 200) {
+              const msg = regRes.data.message[0].messages[0].message;
+              this.fail(msg);
+            } else {
+              this.$router.push('/post-registration');
+            }
+          })
+      },
+      fail(msg) {
+        this.flashMessage.setStrategy('single');
+        this.flashMessage.error({
+          message: msg
         });
       }
     }
