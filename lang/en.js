@@ -97,7 +97,9 @@ export default {
     en: '(English)',
     ar: '(Arabic)',
     optional: '(Optional)',
-    submit: 'Submit'
+    submit: 'Submit',
+    welcome: 'Welcome to JOSA',
+    thanks: 'Thank you for registering your profile. Please check your inbox for the verification email and follow along to set your credintials.'
   },
   // Tasks
   tasks: {
