@@ -37,18 +37,19 @@
           <h5>{{ $t('members.since') }}</h5>
           <p class="text-lg">{{ member.memberSince | monthYear($i18n.locale) }}</p>
         </section>
+        <!-- Badges -->
         <section>
-          <h5>Badges</h5>
+          <h5>{{ $t('members.badges') }}</h5>
           <badges v-if="member.badges" :badges="member.badges" />
         </section>
       </div>
       <div class="main">
         <section>
-          <h3>about</h3>
+          <h3>{{ $t('members.about') }}</h3>
           <div>{{ member.about}}</div>
         </section>
         <section>
-          <h3>interests</h3>
+          <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
               {{ interest | lowercase | capitalize({ onlyFirstLetter: true }) }}

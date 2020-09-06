@@ -64,7 +64,10 @@ export default {
     supporter: 'Supporter Member',
     active: 'Active Member',
     id: 'Member ID',
-    since: 'Member Since'
+    since: 'Member Since',
+    badges: 'Badges',
+    about: 'About',
+    interests: 'Interests'
   },
   // Sort
   sort: {
