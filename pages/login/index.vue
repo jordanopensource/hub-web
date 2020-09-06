@@ -19,7 +19,7 @@
 <script>
   import axios from 'axios';
 
-  import loginForm from '@/components/Auth/loginForm'
+  import loginForm from '@/components/Auth/LoginForm'
   export default {
     layout: 'default',
     components: {
