@@ -23,7 +23,8 @@ module.exports = {
           'dark': '#aea79f',
         },
         'josa-black': '#2e3436',
-        'grey90': '#e5e5e5'
+        'grey90': '#e5e5e5',
+        'grey70': '#707070'
       },
       fontFamily: {
         'aleoLight': 'aleo-light',

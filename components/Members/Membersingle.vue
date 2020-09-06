@@ -1,44 +1,55 @@
 <template>
   <div class="p-12 bg-white">
-
-    <div class="w-full flex flex-wrap md:flex-no-wrap">
+    <!-- Name and picture section small screen -->
+    <div class="w-full md:hidden">
+      <div class="flex flex-row">
+        <appImage :image="member.profilePicture" size="small" class="picture ltr:mr-8 rtl:ml-8" />
+        <h4 class="title title-small min-content">{{ member.fullName_en }}</h4>
+      </div>
+      <section v-if="titles" class="w-full">
+        <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+      </section>
+    </div>
+    <!-- Name and picture section meduim screen and larger -->
+    <div class="w-full flex-wrap md:flex-no-wrap hidden md:flex">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-8">
         <appImage :image="member.profilePicture" size="small" class="picture" />
       </div>
       <div class="main">
         <section class="name-section">
-          <h2 class="title">{{ member.fullName }}</h2>
-          <div>
+          <h4 class="title">{{ member.fullName_en }}</h4>
+          <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
         </section>
       </div>
     </div>
-
+    <!-- Information Section -->
     <div class="w-full flex flex-wrap md:flex-no-wrap">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-4">
         <section class="membership-type">
           <img class="josa-icon ltr:mr-2 rtl:ml-2" src="/logo/favicon.png">
-          <p class="membership-text">{{ member.membershipType | uppercase }}</p>
+          <p class="membership-text min-content">{{ $t('members.' + member.membershipType) | uppercase }}</p>
         </section>
         <section>
-          <h5>member id</h5>
-          <p class="member-id">{{ member.membershipId }}</p>
-          <h5>member since</h5>
-          <p class="member-since">{{ member.memberSince | monthYear($i18n.locale) }}</p>
+          <h5>{{ $t('members.id') }}</h5>
+          <p class="member-id mb-4">{{ member.membershipId }}</p>
+          <h5>{{ $t('members.since') }}</h5>
+          <p class="text-lg">{{ member.memberSince | monthYear($i18n.locale) }}</p>
         </section>
+        <!-- Badges -->
         <section>
-          <h5>Badges</h5>
+          <h5>{{ $t('members.badges') }}</h5>
           <badges v-if="member.badges" :badges="member.badges" />
         </section>
       </div>
       <div class="main">
         <section>
-          <h3>about</h3>
+          <h3>{{ $t('members.about') }}</h3>
           <div>{{ member.about}}</div>
         </section>
         <section>
-          <h3>interests</h3>
+          <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
               {{ interest | lowercase | capitalize({ onlyFirstLetter: true }) }}
@@ -72,7 +83,7 @@
           const titles = this.$options.filters.stringToArray(this.member.titles)
           return titles
         } catch {
-          return []
+          return null
         }
       },
       interests() {
@@ -107,7 +118,7 @@
 
     .side {
       width: 200px;
-      @apply flex-shrink-0
+      @apply flex-shrink-0;
     }
   }
 
@@ -137,12 +148,16 @@
 
   .josa-icon {
     @apply rounded-md;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
   }
 
   .membership-text {
-    @apply font-semibold text-josa-warm-grey-dark text-sm;
+    @apply font-semibold text-grey70 text-sm leading-none;
+  }
+
+  .member-id {
+    @apply text-2xl font-light leading-snug;
   }
 
   .badges img {
