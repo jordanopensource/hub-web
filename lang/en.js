@@ -60,7 +60,11 @@ export default {
   },
   // Members
   members: {
-    members: 'Members'
+    members: 'Members',
+    supporter: 'Supporter Member',
+    active: 'Active Member',
+    id: 'Member ID',
+    since: 'Member Since'
   },
   // Sort
   sort: {

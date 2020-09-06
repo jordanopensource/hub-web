@@ -70,7 +70,7 @@ h4 {
 
 /* h5 */
 h5 {
-  @apply font-normal text-xs font-medium uppercase text-josa-warm-grey-dark;
+  @apply font-normal text-sm font-medium uppercase text-grey70;
 }
 
 [lang="en"] h5 {

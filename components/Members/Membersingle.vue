@@ -24,18 +24,18 @@
         </section>
       </div>
     </div>
-
+    <!-- Information Section -->
     <div class="w-full flex flex-wrap md:flex-no-wrap">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-4">
         <section class="membership-type">
           <img class="josa-icon ltr:mr-2 rtl:ml-2" src="/logo/favicon.png">
-          <p class="membership-text">{{ member.membershipType | uppercase }}</p>
+          <p class="membership-text min-content">{{ $t('members.' + member.membershipType) | uppercase }}</p>
         </section>
         <section>
-          <h5>member id</h5>
-          <p class="member-id">{{ member.membershipId }}</p>
-          <h5>member since</h5>
-          <p class="member-since">{{ member.memberSince | monthYear($i18n.locale) }}</p>
+          <h5>{{ $t('members.id') }}</h5>
+          <p class="member-id mb-4">{{ member.membershipId }}</p>
+          <h5>{{ $t('members.since') }}</h5>
+          <p class="text-lg">{{ member.memberSince | monthYear($i18n.locale) }}</p>
         </section>
         <section>
           <h5>Badges</h5>
@@ -147,12 +147,16 @@
 
   .josa-icon {
     @apply rounded-md;
-    width: 32px;
-    height: 32px;
+    width: 42px;
+    height: 42px;
   }
 
   .membership-text {
-    @apply font-semibold text-josa-warm-grey-dark text-sm;
+    @apply font-semibold text-grey70 text-sm leading-none;
+  }
+
+  .member-id {
+    @apply text-2xl font-light leading-snug;
   }
 
   .badges img {
