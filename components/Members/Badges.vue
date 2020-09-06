@@ -29,8 +29,9 @@
 
 <style scoped>
   .badges img {
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 64px;
+    @apply rounded-sm
   }
 
 </style>
