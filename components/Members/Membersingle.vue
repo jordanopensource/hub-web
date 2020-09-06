@@ -1,14 +1,24 @@
 <template>
   <div class="p-12 bg-white">
-
-    <div class="w-full flex flex-wrap md:flex-no-wrap">
+    <!-- Name and picture section small screen -->
+    <div class="w-full md:hidden">
+      <div class="flex flex-row">
+        <appImage :image="member.profilePicture" size="small" class="picture ltr:mr-8 rtl:ml-8" />
+        <h4 class="title title-small min-content">{{ member.fullName_en }}</h4>
+      </div>
+      <section v-if="titles" class="w-full">
+        <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+      </section>
+    </div>
+    <!-- Name and picture section meduim screen and larger -->
+    <div class="w-full flex-wrap md:flex-no-wrap hidden md:flex">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-8">
         <appImage :image="member.profilePicture" size="small" class="picture" />
       </div>
       <div class="main">
         <section class="name-section">
-          <h2 class="title">{{ member.fullName }}</h2>
-          <div>
+          <h4 class="title">{{ member.fullName_en }}</h4>
+          <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
         </section>
@@ -72,7 +82,7 @@
           const titles = this.$options.filters.stringToArray(this.member.titles)
           return titles
         } catch {
-          return []
+          return null
         }
       },
       interests() {
@@ -107,7 +117,7 @@
 
     .side {
       width: 200px;
-      @apply flex-shrink-0
+      @apply flex-shrink-0;
     }
   }
 

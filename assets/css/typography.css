@@ -107,7 +107,6 @@ h6 {
   @apply font-almarai;
 }
 
-
 .display-lead {
   @apply text-xl font-light leading-snug;
 }

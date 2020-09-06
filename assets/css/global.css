@@ -19,6 +19,9 @@ body {
   top: 0;
   border-top: 10px solid #3897c0;
 }
+.title-small::before {
+  width: 50%;
+}
 
 [dir="ltr"] .title::before {
   left: 0;
@@ -110,6 +113,16 @@ a.active {
   .nav-link {
     @apply inline-block px-4 py-0;
   }
+}
+
+.min-content {
+  width: min-intrinsic;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  display: table-caption;
+  display: -ms-grid;
+  -ms-grid-columns: min-content;
 }
 
 /* Profile Picture */
