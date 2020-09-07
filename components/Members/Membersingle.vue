@@ -19,7 +19,7 @@
       </div>
       <div class="main">
         <section class="name-section">
-          <h4 class="title">{{ member.fullName_en }}</h4>
+          <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
           <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
