@@ -2,12 +2,12 @@
   <div id="login-page" class="bg-josa-warm-grey-light">
     <div class="container">
       <div class="p-12 my-12 row">
-        <h2 class="title m-0">{{ loginMeta['title_' + $i18n.locale] }}</h2>
-        <p class="display-lead py-4">{{ loginMeta['description_' + $i18n.locale] }}</p>
+        <h2 class="title m-0">{{ $t('auth.reset') }}</h2>
+        <p class="display-lead py-4">{{ $t('auth.resetText') }}</p>
         <div class="block w-full py-8">
           <hr>
         </div>
-        <loginForm />
+        <resetPasswordForm />
         <div class="block w-full py-8">
           <hr>
         </div>
@@ -19,17 +19,11 @@
 <script>
   import axios from 'axios';
 
-  import loginForm from '@/components/Auth/LoginForm'
+  import resetPasswordForm from '@/components/Auth/ResetPasswordForm'
   export default {
     layout: 'default',
     components: {
-      loginForm
-    },
-    async asyncData(context) {
-      const pageMeta = await axios.get(process.env.baseUrl + '/page-metas?pageId=login');
-      return {
-        loginMeta: pageMeta.data[0]
-      }
+      resetPasswordForm
     }
   }
 

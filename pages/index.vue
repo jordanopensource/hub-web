@@ -18,6 +18,7 @@
   import axios from 'axios';
   export default {
     layout: "default",
+    middleware: 'homepage',
     components: {
       pageBanner,
       registrationForm
@@ -42,7 +43,6 @@
           })
       },
       fail(msg) {
-        this.flashMessage.setStrategy('single');
         this.flashMessage.error({
           message: msg
         });
