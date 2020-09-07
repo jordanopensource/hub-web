@@ -1,9 +1,8 @@
 <!-- Fetch and list task tasks based on categories-->
 <template>
-  <section v-if="ifNotEmpty()">
-      <h3>{{ title }}</h3>
-      <taskPreview v-for="task in loadedTasks" :key="task.id" :id="'task-' + task.id" :task="task" />
-  </section>
+  <div v-if="ifNotEmpty()" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 border-t border-dotted">
+    <taskPreview v-for="task in loadedTasks" :key="task.id" :id="'task-' + task.id" :task="task" class="md:my-4" />
+  </div>
 </template>
 
 <script>
@@ -21,8 +20,7 @@
     },
     props: {
       title: {
-        type: String,
-        required: true
+        type: String
       },
       category: {
         type: String,
