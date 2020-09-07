@@ -10,7 +10,6 @@
 </template>
 
 <script>
-  const Cookie = process.client ? require('js-cookie') : undefined
   import axios from 'axios';
   import AppControlInput from "~/components/FormComponents/AppControlInput";
   import AppButton from "~/components/FormComponents/AppButton";
@@ -28,29 +27,17 @@
       AppButton,
     },
     methods: {
-      async postLogin() {
-        await axios.post(process.env.baseUrl + '/auth/local', {
-            identifier: this.username,
-            password: this.password,
-          })
-          .then(response => {
-            const auth = {
-              accessToken: response.data.jwt,
-              username: response.data.user.username,
-              id: response.data.user.id
-            }
-            this.$store.commit('setAuth', auth) // mutating to store for client rendering
-            Cookie.set('auth', auth, {
-              sameSite: 'lax',
-              secure: true
-            }) // saving token in cookie for server rendering
-            this.$router.back()
-          })
-          .catch(error => {
-            console.log('An error occurred:', error.response);
-          });
+      postLogin() {
+        const credintials = {
+          identifier: this.username,
+          password: this.password,
+        }
+        this.$store.dispatch('login', credintials);
+        this.$router.fallback = true
+        this.$router.back()
+
       }
-    },
+    }
   }
 
 </script>

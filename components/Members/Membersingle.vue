@@ -3,21 +3,33 @@
     <!-- Name and picture section small screen -->
     <div class="w-full md:hidden">
       <div class="flex flex-row">
-        <appImage :image="member.profilePicture" size="small" class="picture ltr:mr-8 rtl:ml-8" />
-        <h4 class="title title-small min-content">{{ member.fullName_en }}</h4>
+        <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small"
+          class="profilePicture ltr:mr-8 rtl:ml-8" />
+        <img v-else class="profilePicture ltr:mr-8 rtl:ml-8" src="/images/bots/superbot.svg" />
+        <div>
+          <h4 class="title title-small min-content">{{ member.fullName_en | capitalize }}</h4>
+        </div>
       </div>
-      <section v-if="titles" class="w-full">
-        <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+      <section class="w-full">
+        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 block"><h5>Edit profile</h5> </nuxt-link>
+        <div v-if="titles">
+          <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+        </div>
       </section>
+
     </div>
     <!-- Name and picture section meduim screen and larger -->
     <div class="w-full flex-wrap md:flex-no-wrap hidden md:flex">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-8">
-        <appImage :image="member.profilePicture" size="small" class="picture" />
+        <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture" />
+        <img v-else class="profilePicture" src="/images/bots/superbot.svg" />
       </div>
       <div class="main">
         <section class="name-section">
-          <h4 class="title">{{ member.fullName_en }}</h4>
+          <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
+          <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="-mt-8 block">
+            <h5>Edit profile</h5>
+          </nuxt-link>
           <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
@@ -35,7 +47,8 @@
           <h5>{{ $t('members.id') }}</h5>
           <p class="member-id mb-4">{{ member.membershipId }}</p>
           <h5>{{ $t('members.since') }}</h5>
-          <p class="text-lg">{{ member.memberSince | monthYear($i18n.locale) }}</p>
+          <p class="text-lg">{{ member.memberSince? member.memberSince : member.created_at  | monthYear($i18n.locale) }}
+          </p>
         </section>
         <!-- Badges -->
         <section>
@@ -93,6 +106,15 @@
         } catch {
           return []
         }
+      },
+    },
+    methods: {
+      ifMe() {
+        if (this.$store.getters.auth.id === this.member.id) {
+          return true
+        } else {
+          return false
+        }
       }
     }
   };
@@ -100,7 +122,7 @@
 </script>
 
 <style scoped>
-  .picture {
+  .profilePicture {
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -111,7 +133,7 @@
   }
 
   @screen md {
-    .picture {
+    .profilePicture {
       width: 200px;
       height: 200px;
     }
@@ -171,6 +193,10 @@
 
   .top-full {
     top: 100%
+  }
+
+  .button {
+    max-width: 200px;
   }
 
 </style>

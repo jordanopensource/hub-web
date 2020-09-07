@@ -22,6 +22,7 @@
   import loginForm from '@/components/Auth/LoginForm'
   export default {
     layout: 'default',
+    middleware: 'notAuthenticated',
     components: {
       loginForm
     },

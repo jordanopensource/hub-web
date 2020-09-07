@@ -10,14 +10,12 @@
   export default {
     layout: "default",
     middleware: 'authenticated',
-    asyncData({error, store}) {
-      return axios.get(process.env.baseUrl + '/users/' + store.getters.auth.id)
-        .then(res => {
-          return {
-            member: res.data
-          }
-        })
-        .catch(e => error(e))
+    asyncData({
+      store
+    }) {
+      return {
+        member: store.getters.user
+      }
     },
     components: {
       memberSingle

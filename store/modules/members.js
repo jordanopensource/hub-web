@@ -4,7 +4,8 @@ import axios from 'axios';
 const state = {
   loadedMembers: [],
   membersCount: 1,
-  regRes: null
+  regRes: null,
+  updateRes: null
 };
 
 const getters = {
@@ -17,7 +18,9 @@ const getters = {
   regRes(state) {
     return (state.regRes)
   },
-
+  updateRes(state) {
+    return (state.updateRes)
+  },
 };
 
 const mutations = {
@@ -32,6 +35,9 @@ const mutations = {
   },
   setRegRes(state, res) {
     state.regRes = res
+  },
+  setUpdateRes(state, res) {
+    state.updateRes = res
   },
 };
 
@@ -61,12 +67,28 @@ const actions = {
   },
   async newUser(vuexContext, user) {
     await axios.post(process.env.baseUrl + "/auth/local/register", user)
-    .then(res=>{
-      vuexContext.commit("setRegRes", res);
-    })
-    .catch(error=>{
-      vuexContext.commit("setRegRes", error.response);
-    })
+      .then(res => {
+        vuexContext.commit("setRegRes", res);
+      })
+      .catch(error => {
+        vuexContext.commit("setRegRes", error.response);
+      })
+  },
+  async updateUser(vuexContext, user) {
+    const token = vuexContext.getters.auth.accessToken;
+    const header = {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    }
+    await axios.put(process.env.baseUrl + "/users/" + user.id, user, header)
+      .then(res => {
+        vuexContext.commit("setUpdateRes", res);
+        vuexContext.commit("setUser", res.data);
+      })
+      .catch(error => {
+        vuexContext.commit("setUpdateRes", error.response);
+      })
   },
 };
 

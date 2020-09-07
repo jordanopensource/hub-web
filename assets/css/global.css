@@ -38,7 +38,7 @@ body {
 }
 
 .button {
-  @apply border border-solid rounded-md uppercase py-2 px-4 w-auto inline-block;
+  @apply border border-solid rounded-md uppercase py-2 px-4 text-center;
   transition: background-color, color, border-color, 0.25s linear;
   -webkit-transition: background-color, color, border-color, 0.25s linear;
 }
@@ -124,25 +124,6 @@ a.active {
   display: -ms-grid;
   -ms-grid-columns: min-content;
 }
-
-/* Profile Picture */
-.profilePicture {
-  display: inline;
-  width: 50px;
-  max-height: 60px;
-  border-radius: 45%;
-}
-
-[dir="ltr"] .profilePicture {
-  margin-right: 1rem;
-}
-
-[dir="rtl"] .profilePicture {
-  margin-left: 1rem;
-}
-
-/*****/
-
 
 /* Categories Menu */
 .cat-link {

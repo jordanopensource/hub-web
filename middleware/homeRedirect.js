@@ -1,6 +1,8 @@
 export default function ({ store, redirect }) {
-    // If the user is authenticated redirect to his profile
+    // Define homepage if user is authenticated or not
     if (store.getters.auth) {
       return redirect('/me')
+    } else {
+      return redirect('/join')
     }
   }
