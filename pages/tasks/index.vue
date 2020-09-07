@@ -5,24 +5,15 @@
       <p class="display-lead py-8">{{ taskMeta['description_' + $i18n.locale] }}</p>
     </div>
     <!-- Menu -->
-    <div class="bg-josa-black py-8">
-      <div class="container">
-        <div class="px-12 flex flex-col sm:flex-row">
-          <span :class="activeCat == 'all' ? 'active': ''" class="cat-link"
-            @click="setActiveCat('all')">{{ $t('tasks.all') }}</span>
-          <span :class="activeCat == cat.name ? 'active': ''" class="cat-link" v-for="cat in taskCategories"
-            :key="cat.id" @click="setActiveCat(cat.name)">{{ cat['title_' + $i18n.locale] }}</span>
-        </div>
-      </div>
-    </div>
+    <!-- <div class="flex flex-col sm:flex-row py-6 border-t border-b border-dotted">
+      <span :class="activeCat == 'all' ? 'active': ''" class="cat-link display-lead"
+        @click="setActiveCat('all')">{{ $t('tasks.all') }}</span>
+      <span :class="activeCat == cat.name ? 'active': ''" class="cat-link  display-lead" v-for="cat in taskCategories"
+        :key="cat.id" @click="setActiveCat(cat.name)">{{ cat['title_' + $i18n.locale] }}</span>
+    </div> -->
     <!-- Preview -->
-    <div class="container pb-20">
-      <div v-for="cat in taskCategories" :key="cat.id">
-        <taskList v-if="activeCat=='all' || activeCat==cat.name" class="tasks-list" :numberOfTasks="numTasks"
-          :category="cat.name" :title="cat['title_' + $i18n.locale]" />
-      </div>
+    <taskList :category="all" />
     </div>
-  </div>
 </template>
 
 <script>
@@ -66,15 +57,6 @@
     methods: {
       setActiveCat(cat) {
         this.activeCat = cat
-      }
-    },
-    computed: {
-      numTasks() {
-        if (this.activeCat == 'all') {
-          return 2
-        } else {
-          return 0
-        }
       }
     }
   };

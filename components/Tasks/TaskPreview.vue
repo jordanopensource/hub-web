@@ -1,19 +1,11 @@
 <template>
-  <div class="preview my-8 flex flex-wrap lg:flex-no-wrap">
-    <div class="flex-grow">
-      <div class="mb-2">
-        <nuxt-link :to="taskLink" tag="a" class="inline-block">
-          <h2 class="text-3xl m-0">
-            {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
-        </nuxt-link>
-        <p v-if="task.status == 'closed'" class="closed inline-block">{{ $t('tasks.closed') }}</p>
-        <p v-if="task.status == 'assigned'" class="assigned inline-block">{{ $t('tasks.assigned') }}</p>
-      </div>
-      <p v-if="task['excerpt_' + $i18n.locale]">{{ task['excerpt_' + $i18n.locale] }}</p>
-      <nuxt-link :to="taskLink" class="block py-4 text-josa-blue font-bold ltr:text-sm rtl:text-base hover:opacity-75">
-        {{ $t('meta.knowMore') }}
-        <font-awesome-icon class="ltr:ml-2 rtl:mr-2 align-middle" :icon="['fas', arrowIcon ]" />
+  <div class="border border-dotted rounded-md p-4 flex flex-col justify-between">
+    <div class="mb-8">
+      <h5>{{ task.category['title_' + $i18n.locale] }}</h5>
+      <nuxt-link :to="taskLink" tag="a" class="inline-block">
+      <h2 class="text-3xl">{{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
       </nuxt-link>
+      <p v-if="task['excerpt_' + $i18n.locale]" class="text-base">{{ task['excerpt_' + $i18n.locale] }}</p>
     </div>
   </div>
 </template>
