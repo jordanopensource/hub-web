@@ -37,7 +37,7 @@
           <h5>{{ $t('members.id') }}</h5>
           <p class="member-id mb-4">{{ member.membershipId }}</p>
           <h5>{{ $t('members.since') }}</h5>
-          <p class="text-lg">{{ member.memberSince | monthYear($i18n.locale) }}</p>
+          <p class="text-lg">{{ member.memberSince? member.memberSince : member.created_at  | monthYear($i18n.locale) }}</p>
         </section>
         <!-- Badges -->
         <section>
