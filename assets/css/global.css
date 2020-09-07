@@ -8,7 +8,7 @@ body {
 
 /* Titles */
 .title {
-  @apply relative w-full py-6;
+  @apply relative inline-block py-6;
 }
 
 .title::before {
