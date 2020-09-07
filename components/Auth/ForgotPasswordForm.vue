@@ -27,7 +27,6 @@
             "email": this.email,
           })
           .then(res => {
-            console.log('res');
             this.success(this.$t('auth.resetSent'));
             this.$router.push('/forgot-password/post');
           });

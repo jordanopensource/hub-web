@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 class="title">{{ $t('auth.forgotPostTitle') }}</h2>
-    <p>{{ $t('auth.forgotPostText') }}</p>
+    <h2 class="title">{{ $t('regForm.welcome') }}</h2>
+    <p>{{ $t('regForm.thanks') }}</p>
   </div>
 </template>
 

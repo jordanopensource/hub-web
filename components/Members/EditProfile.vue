@@ -1,5 +1,5 @@
 <template>
-  <div class="p-12 bg-white">
+  <div id="edit-profile-form">
     <form @submit.prevent="onSubmit">
       <!-- Name and picture section meduim screen and larger -->
       <div class="w-full flex-wrap md:flex-no-wrap flex">
@@ -229,7 +229,8 @@
     top: 100%
   }
 
-.submit-button {
-  max-width: 100px;
-}
+  .submit-button {
+    max-width: 100px;
+  }
+
 </style>

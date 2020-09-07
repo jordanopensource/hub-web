@@ -1,8 +1,8 @@
 <template>
-  <div class="task-page">
-    <!-- Banner -->
-    <div class="bg-josa-warm-grey-light">
-      <pageBanner :pageMeta="taskMeta" class="container" />
+  <div id="tasks-page">
+    <div>
+      <h2 class="title m-0">{{ taskMeta['title_' + $i18n.locale] }}</h2>
+      <p class="display-lead py-8">{{ taskMeta['description_' + $i18n.locale] }}</p>
     </div>
     <!-- Menu -->
     <div class="bg-josa-black py-8">
@@ -82,12 +82,5 @@
 </script>
 
 <style scoped>
-  .tasks-list {
-    @apply px-12 mt-20;
-  }
-
-  .task-page {
-    background-color: white;
-  }
 
 </style>

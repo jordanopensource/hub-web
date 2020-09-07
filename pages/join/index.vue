@@ -1,14 +1,10 @@
 <template>
-  <div class="container">
-    <div class="my-12 bg-white">
-      <!-- Banner -->
-      <pageBanner :pageMeta="registerMeta" />
-      <!-- Registration Form -->
-      <div class="row">
-        <registrationForm @submit="onSubmitted" />
-      </div>
-
+  <div id="join">
+    <div>
+      <h2 class="title m-0">{{ registerMeta['title_' + $i18n.locale] }}</h2>
+      <p class="display-lead py-8">{{ registerMeta['description_' + $i18n.locale] }}</p>
     </div>
+    <registrationForm @submit="onSubmitted" />
   </div>
 </template>
 
@@ -38,7 +34,7 @@
               const msg = regRes.data.message[0].messages[0].message;
               this.fail(msg);
             } else {
-              this.$router.push('/post-registration');
+              this.$router.push('join/post');
             }
           })
       },

@@ -1,5 +1,5 @@
 <template>
-  <div class="p-12 bg-white">
+  <div>
     <!-- Name and picture section small screen -->
     <div class="w-full md:hidden">
       <div class="flex flex-row">
@@ -11,12 +11,13 @@
         </div>
       </div>
       <section class="w-full">
-        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 block"><h5>Edit profile</h5> </nuxt-link>
+        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 block">
+          <h5>Edit profile</h5>
+        </nuxt-link>
         <div v-if="titles">
           <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
         </div>
       </section>
-
     </div>
     <!-- Name and picture section meduim screen and larger -->
     <div class="w-full flex-wrap md:flex-no-wrap hidden md:flex">

@@ -5,9 +5,9 @@
         <div class="flex items-center flex-shrink-0">
           <nuxt-link id="brand" tag="div" :to="localePath('index')">
             <a>
-              <img v-if="$i18n.locale == 'ar'" class="w-175 sm:w-240" src="~/static/logo/logo-colored-ar.svg"
+              <img v-if="$i18n.locale == 'ar'" class="w-175 sm:w-240" src="~/static/logo/logo-white-ar.svg"
                 alt="الجمعية الأردنية للمصدر المفتوح">
-              <img v-else class="w-175 sm:w-240" src="~/static/logo/logo-colored-en.svg"
+              <img v-else class="w-175 sm:w-240" src="~/static/logo/logo-white-en.svg"
                 alt="Jordan Open Source Association Logo">
             </a>
           </nuxt-link>
@@ -51,11 +51,11 @@
 
 <style lang="css" scoped>
   .header {
-    @apply bg-josa-warm-grey-light py-4;
+    @apply bg-josa-blue-dark py-8;
   }
 
   .menu-icon {
-    @apply text-josa-black w-6 h-6 !important;
+    @apply text-white w-6 h-6 !important;
   }
 
   @screen sm {

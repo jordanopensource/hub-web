@@ -1,18 +1,8 @@
 <template>
-  <div id="login-page" class="bg-josa-warm-grey-light">
-    <div class="container">
-      <div class="p-12 my-12 row">
-        <h2 class="title m-0">{{ loginMeta['title_' + $i18n.locale] }}</h2>
-        <p class="display-lead py-4">{{ loginMeta['description_' + $i18n.locale] }}</p>
-        <div class="block w-full py-8">
-          <hr>
-        </div>
-        <loginForm />
-        <div class="block w-full py-8">
-          <hr>
-        </div>
-      </div>
-    </div>
+  <div id="login-page">
+    <h2 class="title m-0">{{ loginMeta['title_' + $i18n.locale] }}</h2>
+    <p class="display-lead py-8">{{ loginMeta['description_' + $i18n.locale] }}</p>
+    <loginForm class="border-t border-b border-dotted py-4"/>
   </div>
 </template>
 
