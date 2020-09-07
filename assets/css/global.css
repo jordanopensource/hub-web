@@ -97,7 +97,7 @@ a.active {
 }
 
 .nav-link {
-  @apply p-2 uppercase block;
+  @apply p-2 uppercase block text-white;
 }
 
 
