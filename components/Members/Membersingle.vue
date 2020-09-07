@@ -3,8 +3,9 @@
     <!-- Name and picture section small screen -->
     <div class="w-full md:hidden">
       <div class="flex flex-row">
-        <appImage :image="member.profilePicture" size="small" class="picture ltr:mr-8 rtl:ml-8" />
-        <h4 class="title title-small min-content">{{ member.fullName_en }}</h4>
+        <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture ltr:mr-8 rtl:ml-8" />
+        <img v-else class="profilePicture ltr:mr-8 rtl:ml-8" src="/images/bots/superbot.svg" />
+        <h4 class="title title-small min-content">{{ member.fullName_en | capitalize }}</h4>
       </div>
       <section v-if="titles" class="w-full">
         <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
@@ -13,7 +14,8 @@
     <!-- Name and picture section meduim screen and larger -->
     <div class="w-full flex-wrap md:flex-no-wrap hidden md:flex">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-8">
-        <appImage :image="member.profilePicture" size="small" class="picture" />
+        <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture" />
+        <img v-else class="profilePicture" src="/images/bots/superbot.svg" />
       </div>
       <div class="main">
         <section class="name-section">
@@ -100,7 +102,7 @@
 </script>
 
 <style scoped>
-  .picture {
+  .profilePicture {
     width: 150px;
     height: 150px;
     object-fit: cover;
@@ -111,7 +113,7 @@
   }
 
   @screen md {
-    .picture {
+    .profilePicture {
       width: 200px;
       height: 200px;
     }
