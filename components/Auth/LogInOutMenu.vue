@@ -12,8 +12,7 @@
     name: 'LogInOutMenu',
     methods: {
       logout() {
-        Cookie.remove('auth');
-        this.$store.commit('setAuth', null);
+        this.$store.dispatch('logout');
         this.$router.push('/');
       }
     }
