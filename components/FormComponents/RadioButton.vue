@@ -49,11 +49,11 @@ span {
 }
 
 [dir="ltr"] span {
-  @apply float-left mr-4;
+  @apply mr-4;
 }
 
 [dir="rtl"] span {
-  @apply float-right ml-4;
+  @apply ml-4;
 }
 
 input[type=radio] {

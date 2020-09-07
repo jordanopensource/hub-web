@@ -46,17 +46,20 @@
 </script>
 
 <style scoped>
-
   .input-control {
     @apply mb-4;
   }
 
   .input-control input,
   .input-control textarea {
-    @apply p-3 bg-josa-warm-grey-light;
+    @apply p-3 bg-josa-warm-grey-light w-full;
   }
 
-  input::placeholder {
+  .input-control input{
+    max-width: 400px;
+  }
+
+  input::placeholder, input:disabled {
     @apply text-josa-warm-grey-dark;
   }
 
