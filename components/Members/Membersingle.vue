@@ -110,7 +110,7 @@
     },
     methods: {
       ifMe() {
-        if (this.$store.getters.auth.id === this.member.id) {
+        if (this.$store.getters.auth && this.$store.getters.auth.id === this.member.id) {
           return true
         } else {
           return false
