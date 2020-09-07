@@ -58,7 +58,7 @@
                 secure: true
               }) // saving token in cookie for server rendering
               this.success(this.$t('auth.success'));
-              this.$router.push('/')
+              this.$router.push('/me')
             })
             .catch(error => {
               this.fail(this.$t('auth.fail'));
