@@ -4,8 +4,6 @@
     <menuItems :menu="mainMenu" menuItemClass="nav-link" class="inline-block" />
     <!-- Login/Logout -->
     <logInOutMenu />
-    <!-- Language Switcher -->
-    <languageSwitcher />
   </nav>
 </template>
 
