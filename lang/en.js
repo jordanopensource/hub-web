@@ -55,8 +55,20 @@ export default {
   auth: {
     login: "LOGIN",
     logout: "LOGOUT",
-    email: 'Email or username',
-    password: 'Password'
+    email: 'Email',
+    password: 'Password',
+    reset: 'Reset Password',
+    sendResetText: 'Please enter your email to send a reset link',
+    resetText: 'Enter your new password',
+    send: 'Send',
+    resetSent: 'A reset password email has been sent successfully.',
+    passwordConfirmation: 'Password Confirmation',
+    noMatch: 'Passwords are not matched!',
+    fail: 'Something went wrong! Please try again later.',
+    success: 'Your password has been successfully changed.',
+    forgotPostTitle: 'Reset password email sent!',
+    forgotPostText: 'Please check your email for the reset password email and follow instructions to set your credintials.',
+    forgotPassword: 'forgot password?'
   },
   // Members
   members: {
