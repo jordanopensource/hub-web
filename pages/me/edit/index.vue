@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <editProfile @submit="onSubmitted" :member="member" class="my-12" />
+  <div id="edit-profile-page">
+    <editProfile @submit="onSubmitted" :member="member" />
   </div>
 </template>
 

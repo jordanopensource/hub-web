@@ -3,9 +3,7 @@
     <AppControlInput v-model="username" controlType="input" :placeholder="$t('auth.email')"></AppControlInput>
     <AppControlInput v-model="password" controlType="password" :placeholder="$t('auth.password')"></AppControlInput>
     <nuxt-link to='/forgot-password' class="italic text-sm text-josa-blue">{{ $t('auth.forgotPassword') }}</nuxt-link>
-    <div class="ltr:text-right rtl:text-left">
-      <AppButton btn-style="button-blue-full" type="submit">{{ $t('auth.login') }}</AppButton>
-    </div>
+    <AppButton btn-style="button-blue-full" type="submit" class="block mt-4">{{ $t('auth.login') }}</AppButton>
   </form>
 </template>
 

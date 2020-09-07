@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <memberSingle :member="member" class="my-12" />
+  <div id="profile-page">
+    <memberSingle :member="member" />
   </div>
 </template>
 

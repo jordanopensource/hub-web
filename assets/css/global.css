@@ -3,7 +3,7 @@ body {
 }
 
 .row {
-  @apply w-full bg-white p-12;
+  @apply w-full bg-white p-12 my-12;
 }
 
 /* Titles */
@@ -127,21 +127,20 @@ a.active {
 
 /* Categories Menu */
 .cat-link {
-  @apply px-4 py-2 my-1 text-white cursor-pointer;
+  @apply cursor-pointer text-lg;
 }
 
 .cat-link:hover,
 .cat-link.active {
-  @apply rounded-lg;
-  background-color: rgba(229, 229, 229, 0.2);
+  @apply text-josa-blue;
 }
 
 [dir="ltr"] .cat-link {
-  @apply mr-2;
+  @apply pr-8;
 }
 
 [dir="rtl"] .cat-link {
-  @apply ml-2;
+  @apply pl-8;
 }
 
 /*****/

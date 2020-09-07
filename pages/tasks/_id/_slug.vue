@@ -1,10 +1,12 @@
 <template>
-  <TaskSingle :task="task" />
+  <div id="task-page">
+    <taskSingle :task="task" />
+  </div>
 </template>
 
 <script>
   import axios from 'axios';
-  import TaskSingle from '~/components/Tasks/TaskSingle';
+  import taskSingle from '~/components/Tasks/TaskSingle';
   export default {
     layout: "default",
     asyncData(context) {
@@ -17,7 +19,7 @@
         .catch(e => context.error(e))
     },
     components: {
-      TaskSingle
+      taskSingle
     },
     head() {
       const i18nSeo = this.$nuxtI18nSeo()

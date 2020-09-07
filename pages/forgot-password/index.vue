@@ -1,18 +1,8 @@
 <template>
-  <div id="login-page" class="bg-josa-warm-grey-light">
-    <div class="container">
-      <div class="p-12 my-12 row">
-        <h2 class="title m-0">{{ $t('auth.reset') }}</h2>
-        <p class="display-lead py-4">{{ $t('auth.sendResetText') }}</p>
-        <div class="block w-full py-8">
-          <hr>
-        </div>
-        <forgotPasswordForm />
-        <div class="block w-full py-8">
-          <hr>
-        </div>
-      </div>
-    </div>
+  <div id="forgot-password-page">
+    <h2 class="title m-0">{{ $t('auth.reset') }}</h2>
+    <p class="display-lead py-4">{{ $t('auth.sendResetText') }}</p>
+    <forgotPasswordForm class="border-t border-b border-dotted py-4"/>
   </div>
 </template>
 

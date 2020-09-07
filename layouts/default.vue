@@ -2,7 +2,11 @@
   <div :dir="$dir()">
     <mainHeader />
     <FlashMessage :position="'right top'" />
-    <nuxt class="bg-josa-warm-grey-light" />
+    <div class="bg-josa-warm-grey-light">
+      <div class="container">
+        <nuxt class="row" />
+      </div>
+    </div>
     <mainFooter />
   </div>
 </template>
