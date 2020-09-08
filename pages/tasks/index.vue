@@ -12,6 +12,7 @@
         :key="cat.id" @click="setActiveCat(cat.name)">{{ cat['title_' + $i18n.locale] }}</span>
     </div> -->
     <!-- Preview -->
+    <nuxt-link v-if="$store.getters.auth" to="/tasks/create" tag='a' class="button button-blue-full block mb-4">Create new task</nuxt-link>
     <taskList :category="all" />
     </div>
 </template>
@@ -64,5 +65,7 @@
 </script>
 
 <style scoped>
-
+.button {
+  max-width: 200px;
+}
 </style>

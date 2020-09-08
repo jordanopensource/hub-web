@@ -136,6 +136,12 @@ export default {
     assigned: 'Assigned',
     alreadyApplied: 'You\'ve already applied for this task.'
   },
+  taskForm: {
+    title: 'Title',
+    date: 'Due Date',
+    excerpt: 'Excerpt',
+    description: 'Description'
+  },
   // Messages
   msg: {
     applySuccess: 'Thank you for applying. Our team will contact you soon.'
