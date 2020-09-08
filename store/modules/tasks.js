@@ -52,9 +52,7 @@ const actions = {
       id: vuexContext.getters.auth.id
     }
     return axios.post(process.env.baseUrl + "/tasks", newTask, header)
-    .then(res => {
-      console.log(res.data)
-    })
+    .then(res => {})
     .catch(e => context.error(e));
   },
   editTask(vuexContext, editedTask) {
@@ -65,9 +63,7 @@ const actions = {
       }
     }
     return axios.put(process.env.baseUrl + "/tasks/" + editedTask.id, editedTask, header)
-      .then(res => {
-        console.log(res.data)
-      })
+      .then(res => {})
       .catch(e => context.error(e));
   },
 };
