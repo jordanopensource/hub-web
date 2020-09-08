@@ -3,46 +3,12 @@
     <!-- Primary Footer - Menus -->
     <div class="container flex flex-col md:flex-row flex-wrap md:flex-no-wrap justify-between">
       <!-- About Menu -->
-      <section :id="'footer-menu-' + menus.about.menuId">
-        <h6>{{ menus.about['menuName_' + $i18n.locale] }}</h6>
-        <menuItems :menu="menus.about" />
+      <section :id="'footer-menu-' + menus.membersFooter.menuId">
+        <h6>{{ menus.membersFooter['menuName_' + $i18n.locale] }}</h6>
+        <menuItems :menu="menus.membersFooter" />
         <div class="block md:hidden py-8">
           <hr>
         </div>
-      </section>
-      <!-- Impact Menu -->
-      <section :id="'footer-menu-' + menus.impact1.menuId">
-        <h6>{{ menus.impact1['menuName_' + $i18n.locale] }}</h6>
-        <menuItems :menu="menus.impact1" />
-        <!-- <div class="block py-4">
-          <hr>
-        </div>
-        <menuItems :menu="menus.impact2" /> -->
-        <div class="block md:hidden py-8">
-          <hr>
-        </div>
-      </section>
-      <!-- Support Menu -->
-      <!-- <section :id="'footer-menu-' + menus.support.menuId">
-        <h6>{{ menus.support['menuName_' + $i18n.locale] }}</h6>
-        <menuItems :menu="menus.support" />
-        <div class="block md:hidden py-8">
-          <hr>
-        </div>
-      </section> -->
-      <!-- Connect Menu -->
-      <section :id="'footer-menu-' + menus.connect.menuId">
-        <h6>{{ menus.connect['menuName_' + $i18n.locale] }}</h6>
-        <menuItems :menu="menus.connect" />
-        <div class="block py-4">
-          <hr>
-        </div>
-        <!-- Social Media Links -->
-        <ul class="links en">
-          <li v-for="link in socialMediaLinks" :key="link.id"><a class="whitespace-no-wrap" :href="link.path"
-              target="_blank">
-              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', link.icon ]" />{{ link.id }}</a></li>
-        </ul>
       </section>
     </div>
     <!-- Secondery Footer -->
