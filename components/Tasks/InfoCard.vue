@@ -8,13 +8,13 @@
         <p v-else>{{ $t('tasks.open') }}</p>
       </div>
     </div>
-    <div class="info-card">
+    <!-- <div class="info-card">
       <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fas', 'toggle-on']" />
       <div>
         <p class="font-bold leading-none">{{ $t('tasks.status') }}</p>
         <p>{{ $t('tasks.' + task.status) }}</p>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
