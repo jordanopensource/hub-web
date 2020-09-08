@@ -1,0 +1,248 @@
+body {
+  @apply bg-josa-warm-grey-light;
+}
+
+.row {
+  @apply w-full bg-white p-12 my-12;
+}
+
+/* Titles */
+.title {
+  @apply relative inline-block py-6;
+}
+
+.title::before {
+  content: '';
+  position: absolute;
+  width: 20%;
+  height: 10px;
+  top: 0;
+  border-top: 10px solid #3897c0;
+}
+.title-small::before {
+  width: 50%;
+}
+
+[dir="ltr"] .title::before {
+  left: 0;
+}
+
+[dir="rtl"] .title::before {
+  right: 0;
+}
+
+/*****/
+
+.card {
+  @apply flex flex-col border rounded bg-white p-6 border-grey90;
+}
+
+.button {
+  @apply border border-solid rounded-md uppercase py-2 px-4 text-center;
+  transition: background-color, color, border-color, 0.25s linear;
+  -webkit-transition: background-color, color, border-color, 0.25s linear;
+}
+
+.button-blue {
+  @apply border-josa-blue text-josa-blue;
+}
+
+.button-blue:hover {
+  @apply bg-josa-blue text-white !important;
+}
+
+.button-grey {
+  @apply border-josa-warm-grey-dark text-josa-warm-grey-dark;
+}
+
+.button-grey:hover {
+  @apply bg-josa-warm-grey-dark text-josa-warm-grey !important;
+}
+
+.button-blue-full {
+  @apply border-josa-blue bg-josa-blue;
+  color: #fff !important;
+}
+
+.button-blue-full:hover {
+  background-color: #2f80a2;
+  border-color: #2f80a2;
+}
+
+.button-light {
+  @apply border-josa-warm-grey text-josa-warm-grey;
+}
+
+.button-light:hover {
+  @apply bg-josa-warm-grey text-josa-black !important;
+}
+
+.button-flat {
+  @apply rounded-none normal-case py-3 px-6 text-josa-black border-josa-black font-bold;
+}
+
+.button-flat:hover {
+  @apply opacity-75
+}
+
+a {
+  transition: color 0.25s linear;
+  -webkit-transition: color 0.25s linear;
+  cursor: pointer;
+}
+
+a:hover,
+a.active {
+  @apply text-josa-blue;
+}
+
+.nav-link {
+  @apply p-2 uppercase block text-white;
+}
+
+
+[dir="ltr"] .nav-link-last {
+  @apply pr-0;
+}
+
+[dir="rtl"] .nav-link-last {
+  @apply pl-0;
+}
+
+@screen lg {
+  .nav-link {
+    @apply inline-block px-4 py-0;
+  }
+}
+
+.min-content {
+  width: min-intrinsic;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  display: table-caption;
+  display: -ms-grid;
+  -ms-grid-columns: min-content;
+}
+
+/* Categories Menu */
+.cat-link {
+  @apply cursor-pointer text-lg;
+}
+
+.cat-link:hover,
+.cat-link.active {
+  @apply text-josa-blue;
+}
+
+[dir="ltr"] .cat-link {
+  @apply pr-8;
+}
+
+[dir="rtl"] .cat-link {
+  @apply pl-8;
+}
+
+/*****/
+
+/* Preview Image */
+.preview .thumbnail,
+.preview .thumbnail img {
+  @apply w-full object-cover mb-4;
+  height: 200px;
+  object-position: 50% 50%;
+}
+
+@screen md {
+
+  .preview .thumbnail,
+  .preview .thumbnail img {
+    height: 250px;
+  }
+}
+
+@screen lg {
+
+  .preview .thumbnail,
+  .preview .thumbnail img {
+    @apply mb-0;
+    flex-shrink: 0;
+    height: 250px;
+    width: 400px;
+  }
+
+  [dir="ltr"] .preview .thumbnail {
+    @apply pr-6;
+  }
+
+  [dir="rtl"] .preview .thumbnail {
+    @apply pl-6;
+  }
+}
+
+.featured .thumbnail {
+  @apply w-full object-cover mb-4;
+  object-position: 50% 50%;
+  height: 200px;
+}
+
+@screen md {
+  .featured .thumbnail {
+    height: 300px;
+  }
+}
+
+@screen lg {
+  .featured .thumbnail {
+    height: 450px;
+  }
+}
+
+/*****/
+
+/* Bot 1 */
+#bot-1 {
+  @apply w-full m-auto p-5;
+  max-width: 250px;
+  bottom: 0;
+}
+
+[dir="ltr"] #bot-1 {
+  right: -20px;
+}
+
+[dir="rtl"] #bot-1 {
+  left: -20px;
+}
+
+@screen lg {
+  #bot-1 {
+    max-width: 500px;
+  }
+}
+
+/*****/
+
+/* Status */
+.closed {
+  @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
+.open {
+  @apply uppercase text-green-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
+.assigned {
+  @apply uppercase text-josa-blue-dark px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
+/*****/
+
+/* Flash messages */
+._vue-flash-msg-body._vue-flash-msg-body_success {
+	border: 1px solid #1a485b !important;
+	background-color: #3897c0 !important;
+}
+
+._vue-flash-msg-body._vue-flash-msg-body_success ._vue-flash-msg-body__content {
+	border-left: 5px solid #1a485b !important;
+}
+
+/*****/
