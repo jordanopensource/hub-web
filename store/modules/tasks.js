@@ -2,23 +2,23 @@
 import axios from 'axios';
 
 const state = {
-  assignees: []
+  applicants: []
 };
 
 const getters = {
-  assignees(state) {
-    return (state.assignees)
+  applicants(state) {
+    return (state.applicants)
   }
 };
 
 const mutations = {
-  setAssignees(state, assignees) {
-    state.assignees = assignees
+  setApplicants(state, applicants) {
+    state.applicants = applicants
   }
 };
 
 const actions = {
-  async addAssignee(vuexContext, task) {
+  async addApplicant(vuexContext, task) {
     const token = vuexContext.getters.auth.accessToken;
     const header = {
       headers: {
@@ -28,12 +28,12 @@ const actions = {
     await axios
       .put(process.env.baseUrl + "/tasks/" + task.id, task, header)
       .then(res => {
-        var ar = res.data.assignees.map((assignee) => assignee.user.id);
-        vuexContext.commit("setAssignees", ar);
+        var ar = res.data.applicants.map((applicant) => applicant.user.id);
+        vuexContext.commit("setApplicants", ar);
         })
   },
-  setAssignees(vuexContext, assigneesArray) {
-    vuexContext.commit("setAssignees", assigneesArray);
+  setApplicants(vuexContext, applicantsArray) {
+    vuexContext.commit("setApplicants", applicantsArray);
   },
   addTask(vuexContext, task) {
     const token = vuexContext.getters.auth.accessToken;
