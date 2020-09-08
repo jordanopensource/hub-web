@@ -9,22 +9,25 @@
       <p v-if="task.status == 'open'" class="open inline-block">{{ $t('tasks.open') }}</p>
       <p v-if="task.status == 'assigned'" class="assigned inline-block">{{ $t('tasks.assigned') }}</p>
     </div>
+    <!-- Edit button -->
+    <nuxt-link v-if="taskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
+    </nuxt-link>
+    <!-- Apply button -->
+    <div v-if="(task.status == 'open') && !taskOwner()" class="mt-4">
+      <appButton v-if="isApplicable" btn-style="button-blue-full" @click="apply">{{ $t('tasks.apply') }}
+      </appButton>
+      <p v-else class="mt-4">{{ $t('tasks.alreadyApplied') }}</p>
+    </div>
     <!-- Content -->
-    <div class="content flex flex-wrap md:flex-no-wrap mt-12">
+    <div class="content mt-12 flex">
       <div class="w-full md:w-3/5 ltr:mr-8 rtl:ml-8 mb-8">
         <div v-if="task['description_' + $i18n.locale]" class="description pb-8"
-          v-html="$md.render(task['description_' + $i18n.locale])"></div>
+          v-html="task['description_' + $i18n.locale]"></div>
       </div>
       <!-- Sidebar -->
       <div class="w-full md:w-2/5 mb-8">
-        <!-- Apply button -->
-        <div v-if="task.status == 'open'" class="mb-4">
-          <appButton v-if="isApplicable" btn-style="button-blue-full" @click="apply">{{ $t('tasks.apply') }}
-          </appButton>
-          <p v-else>{{ $t('tasks.alreadyApplied') }}</p>
-        </div>
         <!-- Information -->
-        <!-- <infoCard class="mb-8" :task="task" /> -->
+        <infoCard class="mb-8" :task="task" />
       </div>
     </div>
   </div>
@@ -89,6 +92,13 @@
         this.flashMessage.success({
           message: this.$t('msg.applySuccess')
         });
+      },
+      taskOwner() {
+        if (this.$store.getters.auth && this.task.taskOwner && this.$store.getters.auth.id === this.task.taskOwner.id) {
+          return true
+        } else {
+          return false
+        }
       }
     }
   }
@@ -102,7 +112,7 @@
   }
 
   .button {
-    @apply w-full;
+    width: 150px;
   }
 
 </style>
