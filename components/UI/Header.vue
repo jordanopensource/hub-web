@@ -4,12 +4,7 @@
       <div class="px-12 flex justify-between flex-wrap lg:flex-no-wrap items-center">
         <div class="flex items-center flex-shrink-0">
           <nuxt-link id="brand" tag="div" :to="localePath('index')">
-            <a>
-              <img v-if="$i18n.locale == 'ar'" class="w-175 sm:w-240" src="~/static/logo/logo-white-ar.svg"
-                alt="الجمعية الأردنية للمصدر المفتوح">
-              <img v-else class="w-175 sm:w-240" src="~/static/logo/logo-white-en.svg"
-                alt="Jordan Open Source Association Logo">
-            </a>
+            <a><img class="w-175 sm:w-240" src="~/static/logo/membershub.svg" alt="Jordan Open Source Association - Members Hub"></a>
           </nuxt-link>
         </div>
 
