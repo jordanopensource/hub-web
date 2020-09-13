@@ -5,6 +5,8 @@
     <div>
       <h2 class="text-3xl m-0 inline-block">
         {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
+      <!-- Status -->
+      <p class="inline-block" :class="task.status">{{ $t('tasks.' + task.status) }}</p>
     </div>
     <!-- Edit button -->
     <nuxt-link v-if="ifTaskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
@@ -93,13 +95,13 @@
         }
       },
       assignedTo() {
-          const applicants = this.task.applicants
-          const assignedTo = applicants.filter(a => a.approved)
-          if (assignedTo && assignedTo.length >> 0) {
-            return assignedTo
-          } else {
-            return null
-          }
+        const applicants = this.task.applicants
+        const assignedTo = applicants.filter(a => a.approved)
+        if (assignedTo && assignedTo.length >> 0) {
+          return assignedTo
+        } else {
+          return null
+        }
       },
       notAssignedTo() {
         const applicants = this.task.applicants

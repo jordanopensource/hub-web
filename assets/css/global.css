@@ -227,6 +227,9 @@ a.active {
 .closed {
   @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
 }
+.solved {
+  @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
 .open {
   @apply uppercase text-green-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
 }
