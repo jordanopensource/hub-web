@@ -129,6 +129,7 @@ export default {
   tasks: {
     all: 'All Tasks',
     due: 'Due Date',
+    points: 'Points',
     open: 'Open',
     closed: 'Closed',
     status: 'Status',

@@ -7,6 +7,9 @@
     <appControlInput v-model="editedTask.dueDate" controlType="date">
       <template v-slot:label>{{ $t('taskForm.date') }}</template>
     </appControlInput>
+    <appControlInput v-model="editedTask.points" controlType="number" :min="1" placeholder="1">
+      <template v-slot:label>{{ $t('tasks.points') }}</template>
+    </appControlInput>
     <label class="pb-2 block">{{ $t('taskForm.category') }}</label>
     <div class="flex mb-4">
       <radioButton v-for="cat in categories" :key="cat.id" :id="cat.id" class="radio" :value="cat.id"
@@ -19,7 +22,8 @@
       <template v-slot:sub>{{ $t('taskForm.description') }}</template>
     </appControlInput>
     <appButton btn-style="button-blue-full" type="submit">{{ $t('button.save') }}</appButton>
-    <appButton type="button" style="margin-left: 10px" btn-style="button-grey" @click="onCancel">{{ $t('button.cancel') }}</appButton>
+    <appButton type="button" style="margin-left: 10px" btn-style="button-grey" @click="onCancel">
+      {{ $t('button.cancel') }}</appButton>
   </form>
 </template>
 
@@ -57,7 +61,8 @@
           dueDate: null,
           category: {
             id: null
-          }
+          },
+          points: null
         }
       };
     },

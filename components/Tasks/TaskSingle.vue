@@ -24,6 +24,10 @@
           <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fas', 'clock']" />
           <p class="font-bold">{{ $t('tasks.due') }}: {{ task.dueDate | fullDate($i18n.locale) }}</p>
         </div>
+        <div v-if="task.points" class="flex flex-row flex-no-wrap mb-4">
+          <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fas', 'medal']" />
+          <p class="font-bold">{{ $t('tasks.points') }}: {{ task.points }}</p>
+        </div>
 
         <div v-if="task['description_' + $i18n.locale]" class="description pb-8"
           v-html="task['description_' + $i18n.locale]"></div>
