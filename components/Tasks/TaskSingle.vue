@@ -1,22 +1,23 @@
 <template>
   <div>
     <div class="text-josa-blue text-xl mb-2">{{ task.category['title_' + $i18n.locale] }}</div>
-    <!-- Title and Status -->
     <div>
+      <!-- Title -->
       <h2 class="text-3xl m-0 inline-block">
         {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
       <!-- Status -->
-      <p class="inline-block" :class="task.assigned ? 'assigned' : 'open'">{{ task.assigned ? $t('tasks.assigned') : $t('tasks.open') }}</p>
+      <p class="inline-block" :class="task.assigned ? 'assigned' : 'open'">
+        {{ task.assigned ? $t('tasks.assigned') : $t('tasks.open') }}</p>
     </div>
     <!-- Edit button -->
     <nuxt-link v-if="ifTaskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
     </nuxt-link>
     <!-- Apply button -->
-    <div v-if="(task.status == 'open') && !ifTaskOwner()" class="mt-4">
+    <div v-if="task.open && !ifTaskOwner()" class="mt-4">
       <appButton v-if="isApplicable" btn-style="button-blue-full" @click="apply">{{ $t('tasks.apply') }}
       </appButton>
+      <p v-if="!ifMeAssigned && !isApplicable" class="mt-4">{{ $t('tasks.alreadyApplied') }}</p>
       <p v-if="ifMeAssigned" class="mt-4">{{ $t('tasks.meAssigned') }}</p>
-      <p v-else class="mt-4">{{ $t('tasks.alreadyApplied') }}</p>
     </div>
     <!-- Content -->
     <div class="content mt-12 flex flex-wrap md:flex-no-wrap">
