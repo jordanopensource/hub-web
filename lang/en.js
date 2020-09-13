@@ -140,10 +140,16 @@ export default {
     title: 'Title',
     date: 'Due Date',
     excerpt: 'Excerpt',
-    description: 'Description'
+    description: 'Description',
+    category: 'Category'
   },
   // Messages
   msg: {
     applySuccess: 'Thank you for applying. Our team will contact you soon.'
+  },
+  //Buttons
+  button: {
+    cancel: 'Cancel',
+    save: 'Save'
   }
 }

@@ -7,7 +7,7 @@
     <appControlInput v-model="editedTask.dueDate" controlType="date">
       <template v-slot:label>{{ $t('taskForm.date') }}</template>
     </appControlInput>
-    <label>Category</label>
+    <label class="pb-2 block">{{ $t('taskForm.category') }}</label>
     <div class="flex mb-4">
       <radioButton v-for="cat in categories" :key="cat.id" :id="cat.id" class="radio" :value="cat.id"
         :label="cat.title_en" v-model="editedTask.category.id" />
@@ -18,8 +18,8 @@
     <appControlInput v-model="editedTask.description_en" controlType="textarea">
       <template v-slot:sub>{{ $t('taskForm.description') }}</template>
     </appControlInput>
-    <appButton btn-style="button-blue-full" type="submit">Save</appButton>
-    <appButton type="button" style="margin-left: 10px" btn-style="button-grey" @click="onCancel">Cancel</appButton>
+    <appButton btn-style="button-blue-full" type="submit">{{ $t('button.save') }}</appButton>
+    <appButton type="button" style="margin-left: 10px" btn-style="button-grey" @click="onCancel">{{ $t('button.cancel') }}</appButton>
   </form>
 </template>
 
