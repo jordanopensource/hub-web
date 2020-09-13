@@ -3,13 +3,14 @@
     <div class="text-josa-blue text-xl mb-2">{{ task.category['title_' + $i18n.locale] }}</div>
     <!-- Title and Status -->
     <div>
-      <h2 class="text-3xl m-0 inline-block">{{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
+      <h2 class="text-3xl m-0 inline-block">
+        {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
     </div>
     <!-- Edit button -->
-    <nuxt-link v-if="taskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
+    <nuxt-link v-if="ifTaskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
     </nuxt-link>
     <!-- Apply button -->
-    <div v-if="(task.status == 'open') && !taskOwner()" class="mt-4">
+    <div v-if="(task.status == 'open') && !ifTaskOwner()" class="mt-4">
       <appButton v-if="isApplicable" btn-style="button-blue-full" @click="apply">{{ $t('tasks.apply') }}
       </appButton>
       <p v-else class="mt-4">{{ $t('tasks.alreadyApplied') }}</p>
@@ -26,12 +27,13 @@
           v-html="task['description_' + $i18n.locale]"></div>
       </div>
       <!-- Sidebar -->
-      <div v-if="taskOwner()" class="w-full md:w-2/5 mb-8">
+      <div v-if="ifTaskOwner()" class="w-full md:w-2/5 mb-8">
         <!-- Applicants -->
         <div class="mb-8">
           <h3>Assigned to</h3>
           <div v-if="assignedTo">
-            <applicant v-for="applicant in assignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8" :assigned="assignedTo?true:false"/>
+            <applicant v-for="applicant in assignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
+              :assigned="assignedTo?true:false" />
           </div>
           <p v-else>No Assigned yet.</p>
 
@@ -40,7 +42,8 @@
         <div>
           <h3>Applicants</h3>
           <div v-if="ifApplicants()">
-            <applicant v-for="applicant in notAssignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8" :assigned="assignedTo?true:false" @assign="assignUser" />
+            <applicant v-for="applicant in notAssignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
+              :assigned="assignedTo?true:false" @assign="assignUser" />
           </div>
           <p v-else>No Applicants yet.</p>
         </div>
@@ -110,7 +113,9 @@
     },
     methods: {
       async assignUser(applicant) {
-        var temp = { ...this.task }
+        var temp = {
+          ...this.task
+        }
         const index = temp.applicants.findIndex(t => t.id == applicant.id)
         temp.applicants[index].approved = true
         await this.$store.dispatch('editTask', temp);
@@ -129,13 +134,7 @@
           this.$router.push('/login');
         }
       },
-      success() {
-        this.flashMessage.setStrategy('single');
-        this.flashMessage.success({
-          message: this.$t('msg.applySuccess')
-        });
-      },
-      taskOwner() {
+      ifTaskOwner() {
         if (this.$store.getters.auth && this.task.taskOwner && this.$store.getters.auth.id === this.task.taskOwner.id) {
           return true
         } else {
@@ -147,6 +146,12 @@
           return true;
         else
           return false;
+      },
+      success() {
+        this.flashMessage.setStrategy('single');
+        this.flashMessage.success({
+          message: this.$t('msg.applySuccess')
+        });
       }
     }
   }
