@@ -6,7 +6,7 @@
       <h2 class="text-3xl m-0 inline-block">
         {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
       <!-- Status -->
-      <p class="inline-block" :class="task.status">{{ $t('tasks.' + task.status) }}</p>
+      <p class="inline-block" :class="task.assigned ? 'assigned' : 'open'">{{ task.assigned ? $t('tasks.assigned') : $t('tasks.open') }}</p>
     </div>
     <!-- Edit button -->
     <nuxt-link v-if="ifTaskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
@@ -15,6 +15,7 @@
     <div v-if="(task.status == 'open') && !ifTaskOwner()" class="mt-4">
       <appButton v-if="isApplicable" btn-style="button-blue-full" @click="apply">{{ $t('tasks.apply') }}
       </appButton>
+      <p v-if="ifMeAssigned" class="mt-4">{{ $t('tasks.meAssigned') }}</p>
       <p v-else class="mt-4">{{ $t('tasks.alreadyApplied') }}</p>
     </div>
     <!-- Content -->
@@ -115,7 +116,20 @@
         } else {
           return null
         }
-      }
+      },
+      ifMeAssigned() {
+        if (this.auth && this.assignedTo) {
+          const userId = this.auth.id
+          const assignedTo = this.assignedTo.map((a) => a.user.id)
+          if (assignedTo.includes(userId)) {
+            return true
+          } else {
+            return false
+          }
+        } else {
+          return false
+        }
+      },
     },
     methods: {
       async assignUser(applicant) {

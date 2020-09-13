@@ -24,6 +24,7 @@
     },
     methods: {
       onSubmitted(editedTask) {
+        this.$nuxt.$loading.start()
         this.$store.dispatch("editTask", editedTask).then(() => {
           this.$router.go(-1);
         });
