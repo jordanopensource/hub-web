@@ -6,12 +6,19 @@
       <h2 class="text-3xl m-0 inline-block">
         {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
       <!-- Status -->
-      <p class="inline-block" :class="task.assigned ? 'assigned' : 'open'">
-        {{ task.assigned ? $t('tasks.assigned') : $t('tasks.open') }}</p>
+      <p v-if="task.open" class="inline-block" :class="task.assigned ? 'assigned' : 'open'">{{ task.assigned ? $t('tasks.assigned') : $t('tasks.open') }}</p>
+      <p v-if="!task.open" class="inline-block" :class="task.solved ? 'solved' : 'closed'">{{ task.solved ? $t('tasks.solved') : $t('tasks.closed') }}</p>
     </div>
-    <!-- Edit button -->
-    <nuxt-link v-if="ifTaskOwner()" to="edit" tag='a' class="button button-blue-full block mt-4" append>Edit
-    </nuxt-link>
+    <div class="flex mt-4">
+      <!-- Edit button -->
+      <nuxt-link v-if="task.open && ifTaskOwner()" to="edit" tag='a' class="button button-blue-full block mr-4" append>Edit
+      </nuxt-link>
+      <!-- Mark as solved button -->
+      <appButton v-if="task.open && ifTaskOwner() && assignedTo != null" btn-style="button-red-full"
+        @click="markSolved">
+        {{ $t('tasks.markSolved') }}
+      </appButton>
+    </div>
     <!-- Apply button -->
     <div v-if="task.open && !ifTaskOwner()" class="mt-4">
       <appButton v-if="isApplicable" btn-style="button-blue-full" @click="apply">{{ $t('tasks.apply') }}
@@ -35,23 +42,31 @@
           v-html="task['description_' + $i18n.locale]"></div>
       </div>
       <!-- Sidebar -->
-      <div v-if="ifTaskOwner()" class="w-full md:w-2/5 mb-8">
-        <!-- Applicants -->
-        <div class="mb-8">
+      <div class="w-full md:w-2/5 mb-8">
+        <!-- Solved by -->
+        <div v-if="task.solved" class="mb-8">
+          <h3>Solved by</h3>
+          <div v-if="solvedBy">
+            <applicant v-for="applicant in solvedBy" :key="applicant.user.id" :applicant="applicant" class="mb-8"
+              :assigned="assignedTo?true:false" :taskSolved="task.solved" />
+          </div>
+          <p v-else>No Solved yet.</p>
+        </div>
+        <!-- Assigned to -->
+        <div v-if="!task.solved && ifTaskOwner()" class="mb-8">
           <h3>Assigned to</h3>
           <div v-if="assignedTo">
             <applicant v-for="applicant in assignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" />
+              :assigned="assignedTo?true:false" :taskSolved="task.solved" />
           </div>
           <p v-else>No Assigned yet.</p>
-
         </div>
         <!-- Applicants -->
-        <div>
+        <div v-if="!task.solved && ifTaskOwner()" >
           <h3>Applicants</h3>
           <div v-if="ifApplicants()">
             <applicant v-for="applicant in notAssignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" @assign="assignUser" />
+              :assigned="assignedTo?true:false" @assign="assignUser" :taskSolved="task.solved" />
           </div>
           <p v-else>No Applicants yet.</p>
         </div>
@@ -131,15 +146,26 @@
           return false
         }
       },
+      solvedBy() {
+        const applicants = this.task.applicants
+        const solvedBy = applicants.filter(a => a.solved)
+        if (solvedBy && solvedBy.length >> 0) {
+          return solvedBy
+        } else {
+          return null
+        }
+      }
     },
     methods: {
       async assignUser(applicant) {
+        this.$nuxt.$loading.start()
         var temp = {
           ...this.task
         }
         const index = temp.applicants.findIndex(t => t.id == applicant.id)
         temp.applicants[index].approved = true
         await this.$store.dispatch('editTask', temp);
+        this.$router.go();
       },
       apply() {
         if (this.auth) {
@@ -154,6 +180,19 @@
         } else {
           this.$router.push('/login');
         }
+      },
+      async markSolved() {
+        this.$nuxt.$loading.start()
+        var temp = {
+          ...this.task
+        }
+        const assignedTo = this.assignedTo.map((a) => a.id)
+        const index = temp.applicants.findIndex(t => assignedTo.includes(t.id))
+        temp.applicants[index].solved = true
+        temp.solved = true
+        temp.open = false
+        await this.$store.dispatch('editTask', temp);
+        this.$router.go();
       },
       ifTaskOwner() {
         if (this.$store.getters.auth && this.task.taskOwner && this.$store.getters.auth.id === this.task.taskOwner.id) {
@@ -183,10 +222,6 @@
   .description>>>p,
   .description>>>h3 {
     @apply mb-4;
-  }
-
-  .button {
-    width: 150px;
   }
 
   h3 {

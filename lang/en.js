@@ -135,8 +135,10 @@ export default {
     status: 'Status',
     apply: 'Apply',
     assigned: 'Assigned',
+    solved: 'Solved',
     alreadyApplied: 'You\'ve already applied for this task.',
-    meAssigned: 'You\'re assigned for this task.'
+    meAssigned: 'You\'re assigned for this task.',
+    markSolved: 'Mark as solved'
   },
   taskForm: {
     title: 'Title',

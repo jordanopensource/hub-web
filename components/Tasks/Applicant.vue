@@ -1,12 +1,13 @@
 <template>
   <div class="flex items-center">
-    <appImage v-if="applicant.user.profilePicture" :image="applicant.user.profilePicture" size="small" class="picture" />
+    <appImage v-if="applicant.user.profilePicture" :image="applicant.user.profilePicture" size="small"
+      class="picture" />
     <div v-else class="picture bg-josa-warm-grey"></div>
     <div class="opacity-90">
       <nuxt-link :to="'/members/' + applicant.user.id">
         <h3 class="font-bold">{{ applicant.user.fullName_en }}</h3>
       </nuxt-link>
-      <p @click="assign" v-if="!assigned" class="text-sm cursor-pointer text-green-900">Assign</p>
+      <p @click="assign" v-if="!assigned && !taskSolved" class="text-sm cursor-pointer text-green-900">Assign</p>
     </div>
   </div>
 </template>
@@ -21,6 +22,10 @@
         required: true
       },
       assigned: {
+        type: Boolean,
+        default: false
+      },
+      taskSolved: {
         type: Boolean,
         default: false
       }
