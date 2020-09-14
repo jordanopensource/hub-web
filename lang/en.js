@@ -138,9 +138,13 @@ export default {
     solved: 'Solved',
     alreadyApplied: 'You\'ve already applied for this task.',
     meAssigned: 'You\'re assigned for this task.',
-    markSolved: 'Mark as solved'
-  },
-  taskForm: {
+    markSolved: 'Mark as solved',
+    solvedBy: 'Solved by',
+    notSolved: 'Not Solved.',
+    assignedTo: 'Assigned to',
+    notAssigned: 'Not assigned yet.',
+    applicants: 'Applicants',
+    noApplicants: 'No applicants yet.',
     title: 'Title',
     date: 'Due Date',
     excerpt: 'Excerpt',
@@ -154,6 +158,7 @@ export default {
   //Buttons
   button: {
     cancel: 'Cancel',
-    save: 'Save'
+    save: 'Save',
+    edit: 'Edit'
   }
 }
