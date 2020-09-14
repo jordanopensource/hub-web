@@ -61,7 +61,7 @@
           <h3>{{ $t('tasks.assignedTo') }}</h3>
           <div v-if="assignedTo">
             <applicant v-for="applicant in assignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" @unAssign="unAssignUser" :taskSolved="task.solved" />
           </div>
           <p v-else>{{ $t('tasks.notAssigned') }}</p>
         </div>
@@ -159,6 +159,16 @@
         }
         const index = temp.applicants.findIndex(t => t.id == applicant.id)
         temp.applicants[index].approved = true
+        await this.$store.dispatch('editTask', temp);
+        this.$router.go();
+      },
+      async unAssignUser(applicant) {
+        this.$nuxt.$loading.start()
+        var temp = {
+          ...this.task
+        }
+        const index = temp.applicants.findIndex(t => t.id == applicant.id)
+        temp.applicants[index].approved = false
         await this.$store.dispatch('editTask', temp);
         this.$router.go();
       },

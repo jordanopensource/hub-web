@@ -7,7 +7,10 @@
       <nuxt-link :to="'/members/' + applicant.user.id">
         <h3 class="font-bold">{{ applicant.user.fullName_en }}</h3>
       </nuxt-link>
-      <p @click="assign" v-if="!assigned && !taskSolved" class="text-sm cursor-pointer text-green-900">Assign</p>
+      <p @click="assign" v-if="!assigned && !taskSolved" class="text-sm cursor-pointer text-green-900">
+        {{ $t('tasks.assign') }}</p>
+      <p @click="unAssign" v-if="assigned && !taskSolved" class="text-sm cursor-pointer text-josa-red">
+        {{ $t('tasks.usAssign') }}</p>
     </div>
   </div>
 </template>
@@ -36,6 +39,9 @@
     methods: {
       assign() {
         this.$emit('assign', this.applicant)
+      },
+      unAssign() {
+        this.$emit('unAssign', this.applicant)
       }
     }
   }

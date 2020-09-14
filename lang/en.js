@@ -149,7 +149,9 @@ export default {
     date: 'Due Date',
     excerpt: 'Excerpt',
     description: 'Description',
-    category: 'Category'
+    category: 'Category',
+    assign: 'Assign',
+    usAssign: 'Remove'
   },
   // Messages
   msg: {
