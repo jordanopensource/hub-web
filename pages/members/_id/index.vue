@@ -9,14 +9,11 @@
   import memberSingle from '~/components/Members/Membersingle'
   export default {
     layout: "default",
-    asyncData(context) {
-      return axios.get(process.env.baseUrl + '/users/' + context.params.id)
-        .then(res => {
-          return {
-            member: res.data
-          }
-        })
-        .catch(e => context.error(e))
+    async asyncData({params,store}) {
+      await store.dispatch('fetchOneUser', params.id);
+      return {
+        member: store.getters.loadedUser
+      }
     },
     components: {
       memberSingle

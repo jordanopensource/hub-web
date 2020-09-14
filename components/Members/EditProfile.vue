@@ -11,8 +11,9 @@
           <section class="name-section">
             <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
             <div>
-            <appButton btn-style="button-blue-full ltr:mr-2 rtl:ml-2" type="submit">{{ $t('button.save') }}</appButton>
-            <nuxt-link to="/me" class="button button-grey inline-block">{{ $t('button.cancel') }}</nuxt-link>
+              <appButton btn-style="button-blue-full ltr:mr-2 rtl:ml-2" type="submit">{{ $t('button.save') }}
+              </appButton>
+              <nuxt-link to="/me" class="button button-grey inline-block">{{ $t('button.cancel') }}</nuxt-link>
             </div>
           </section>
         </div>
@@ -20,6 +21,10 @@
       <!-- Information Section -->
       <div class="w-full flex flex-wrap md:flex-no-wrap">
         <div class="main">
+          <section>
+            <h3>{{ $t('regForm.privacy') }}</h3>
+            <checkbox id="privacy" :value="user.private" v-model="user.private" :label="user.private ? 'Visible only to JOSA members' : 'Visible to everyone'"/>
+          </section>
           <section>
             <h3>{{ $t('regForm.personalInfo') }}</h3>
             <appControlInput v-model="user.fullName_en" controlType="input">
@@ -122,6 +127,7 @@
   import appControlInput from "~/components/FormComponents/AppControlInput";
   import appButton from "~/components/FormComponents/AppButton";
   import radioButton from '~/components/FormComponents/RadioButton';
+  import checkbox from '~/components/FormComponents/Checkbox';
   export default {
     data() {
       return {
@@ -145,7 +151,8 @@
           facebook: this.member.facebook,
           twitter: this.member.twitter,
           github: this.member.github,
-          linkedin: this.member.linkedin
+          linkedin: this.member.linkedin,
+          private: this.member.private
         }
       }
     },
@@ -154,7 +161,8 @@
       badges,
       appControlInput,
       appButton,
-      radioButton
+      radioButton,
+      checkbox
     },
     props: {
       member: {
