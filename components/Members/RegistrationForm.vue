@@ -79,7 +79,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import appControlInput from "~/components/FormComponents/AppControlInput";
   import appButton from "~/components/FormComponents/AppButton";
   import radioButton from '~/components/FormComponents/RadioButton';
