@@ -11,9 +11,7 @@
         </div>
       </div>
       <section class="w-full">
-        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 block">
-          <h5>Edit profile</h5>
-        </nuxt-link>
+        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">{{ $t('button.editProfile') }}</nuxt-link>
         <div v-if="titles">
           <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
         </div>
@@ -28,9 +26,7 @@
       <div class="main">
         <section class="name-section">
           <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
-          <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="-mt-8 block">
-            <h5>Edit profile</h5>
-          </nuxt-link>
+        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">{{ $t('button.editProfile') }}</nuxt-link>
           <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
@@ -50,6 +46,28 @@
           <h5>{{ $t('members.since') }}</h5>
           <p class="text-lg">{{ member.memberSince? member.memberSince : member.created_at  | monthYear($i18n.locale) }}
           </p>
+        </section>
+        <!-- Social Accounts -->
+        <section>
+          <h5>{{ $t('members.contacts') }}</h5>
+          <div class="en">
+            <span v-if="member.github" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'github' ]" />
+              <a :href="link.github + member.github" target="_blank" class="text-sm">/{{ member.github }}</a>
+            </span>
+            <span v-if="member.linkedin" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'linkedin' ]" />
+              <a :href="link.linkedin + member.linkedin" target="_blank" class="text-sm">/{{ member.linkedin }}</a>
+            </span>
+            <span v-if="member.twitter" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'twitter' ]" />
+              <a :href="link.twitter + member.twitter" target="_blank" class="text-sm">@{{ member.twitter }}</a>
+            </span>
+            <span v-if="member.facebook" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'github' ]" />
+              <a :href="link.facebook + member.facebook" target="_blank" class="text-sm">/{{ member.facebook }}</a>
+            </span>
+          </div>
         </section>
         <!-- Badges -->
         <section>
@@ -81,6 +99,16 @@
   import badges from '~/components/Members/Badges';
 
   export default {
+    data() {
+      return {
+        link: {
+          github: 'https://github.com/',
+          linkedin: 'https://linkedin.com/in/',
+          twitter: 'https://twitter.com/',
+          facebook: 'https://facebook.com/'
+        }
+      }
+    },
     components: {
       appImage,
       badges

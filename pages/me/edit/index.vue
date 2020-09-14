@@ -22,16 +22,10 @@
     },
     methods: {
       async onSubmitted(user) {
+        this.$nuxt.$loading.start()
         await this.$store.dispatch("updateUser", user)
           .then(() => {
-            const res = this.$store.getters.updateRes;
-            if (res.status != 200) {
-              // const msg = res.data.message[0].messages[0].message;
-              // this.fail(msg);
-              console.log(res)
-            } else {
-              this.$router.push('/me');
-            }
+            this.$router.push('/me');
           })
       },
       fail(msg) {

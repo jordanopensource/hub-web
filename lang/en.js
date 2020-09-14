@@ -3,17 +3,16 @@ export default {
   copyright: {
     info: 'All the content on this website is licensed under a Creative Commons Attribution-ShareAlike Unported license, except where otherwise mentioned.'
   },
-  // Buttons
-  button: {
-    membersHub: 'Members Hub',
-    login: 'Login',
-  },
   // Social Media Links
   socialMedia: {
     fbPage: 'Facebook Page',
     fbGroup: 'Facebook Group',
     twitter: 'Twitter',
-    instagram: 'Instagram'
+    instagram: 'Instagram',
+    facebook: 'Facebook',
+    twitter: 'Twitter',
+    github: 'Github',
+    linkedin: 'Linkedin'
   },
   // About JOSA
   josa: {
@@ -79,7 +78,8 @@ export default {
     since: 'Member Since',
     badges: 'Badges',
     about: 'About',
-    interests: 'Interests'
+    interests: 'Interests',
+    contacts: 'Contacts'
   },
   // Sort
   sort: {
@@ -121,7 +121,6 @@ export default {
     optional: '(Optional)',
     commaSeperated: '(comma seperated)',
     submit: 'Submit',
-    save: 'Save',
     welcome: 'Welcome to JOSA',
     thanks: 'Thank you for registering your profile. Please check your inbox for the verification email and follow along to set your credintials.'
   },
@@ -161,6 +160,9 @@ export default {
   button: {
     cancel: 'Cancel',
     save: 'Save',
-    edit: 'Edit'
-  }
+    edit: 'Edit',
+    editProfile: 'Edit Profile',
+    membersHub: 'Members Hub',
+    login: 'Login',
+  },
 }
