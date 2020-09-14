@@ -76,6 +76,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   import infoCard from '~/components/Tasks/InfoCard';
   import appButton from '~/components/FormComponents/AppButton';
   import applicant from '~/components/Tasks/Applicant';
@@ -182,17 +183,41 @@
         }
       },
       async markSolved() {
+        // Mark task as sovled and give points to assigned user
         this.$nuxt.$loading.start()
         var temp = {
           ...this.task
         }
         const assignedTo = this.assignedTo.map((a) => a.id)
         const index = temp.applicants.findIndex(t => assignedTo.includes(t.id))
+        const userId = temp.applicants[index].user.id
+        const solvedTask = {
+          taskName: this.task.title_en,
+          points: this.task.points,
+          task: this.task
+        }
+        let userSolvedTasks
+
+        // Fetch user's solved tasks and push this task to it
+        const user = await axios.get(process.env.baseUrl + "/users/" + userId).then(res => {
+          userSolvedTasks = res.data.solvedTasks
+        })
+        userSolvedTasks.push(solvedTask)
+        const tempUser = {
+          id: userId,
+          solvedTasks: userSolvedTasks
+        }
+        await this.$store.dispatch('updateUser', tempUser)
+
+        // Set boolean values for this task
         temp.applicants[index].solved = true
         temp.solved = true
         temp.open = false
-        await this.$store.dispatch('editTask', temp);
-        this.$router.go();
+        await this.$store.dispatch('editTask', temp).then(() => {
+          this.$nuxt.$loading.finish()
+        })
+        // Refresh page
+        this.$router.go()
       },
       ifTaskOwner() {
         if (this.$store.getters.auth && this.task.taskOwner && this.$store.getters.auth.id === this.task.taskOwner.id) {
