@@ -35,7 +35,9 @@ const actions = {
       const parsed = cookieparser.parse(req.headers.cookie)
       try {
         auth = JSON.parse(parsed.auth);
-        await axios.get(process.env.baseUrl + '/users/' + auth.id).then(res => commit('setUser', res.data))
+        const token = auth.accessToken;
+        const header = {headers: {'Authorization': `Bearer ${token}`}}
+        await axios.get(process.env.baseUrl + '/users/' + auth.id, header).then(res => commit('setUser', res.data))
       } catch (err) {
         // No valid cookie found
       }

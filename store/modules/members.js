@@ -5,12 +5,16 @@ const state = {
   loadedMembers: [],
   membersCount: 1,
   regRes: null,
-  updateRes: null
+  updateRes: null,
+  loadedUser: null
 };
 
 const getters = {
   loadedMembers(state) {
     return (state.loadedMembers)
+  },
+  loadedUser(state) {
+    return (state.loadedUser)
   },
   membersCount(state) {
     return (state.membersCount)
@@ -27,6 +31,9 @@ const mutations = {
   setMembers(state, members) {
     state.loadedMembers = members
   },
+  setloadedUser(state, user) {
+    state.loadedUser = user
+  },
   setMembersCount(state, count) {
     state.membersCount = count
   },
@@ -42,9 +49,21 @@ const mutations = {
 };
 
 const actions = {
-  async fetchMembers(vuexContext, context) {
-    await axios
-      .get(process.env.baseUrl + "/users?_sort=memberSince:DESC")
+  async fetchUsers(vuexContext, context) {
+    let request
+    if (vuexContext.getters.auth) {
+      const token = vuexContext.getters.auth.accessToken;
+      const header = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+      let path = process.env.baseUrl + "/users?_sort=memberSince:DESC"
+      request = [path, header]
+    } else {
+      request = [process.env.baseUrl + "/users/public?_sort=memberSince:DESC"]
+    }
+    await axios.get(...request)
       .then(res => {
         const membersArray = []
         for (const key in res.data) {
@@ -55,6 +74,25 @@ const actions = {
         vuexContext.commit("setMembers", membersArray);
       })
       .catch(e => context.error(e));
+  },
+  async fetchOneUser(vuexContext, userId) {
+    let request
+    if (vuexContext.getters.auth) {
+      const token = vuexContext.getters.auth.accessToken;
+      const header = {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }
+      let path = process.env.baseUrl + "/users/" + userId
+      request = [path, header]
+    } else {
+      request = [process.env.baseUrl + "/users/public/" + userId]
+    }
+    await axios.get(...request)
+      .then(res => {
+        vuexContext.commit("setloadedUser", res.data);
+      })
   },
   async countMembers(vuexContext, context) {
     await axios
