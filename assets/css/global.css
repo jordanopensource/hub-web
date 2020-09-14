@@ -82,7 +82,16 @@ body {
 }
 
 .button-flat:hover {
-  @apply opacity-75
+  @apply opacity-75;
+}
+
+.button-red-full {
+  @apply border-josa-red bg-josa-red;
+  color: #fff !important;
+}
+
+.button-red-full:hover {
+  @apply border-josa-red-dark bg-josa-red-dark;
 }
 
 a {
@@ -225,6 +234,9 @@ a.active {
 
 /* Status */
 .closed {
+  @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+}
+.solved {
   @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
 }
 .open {

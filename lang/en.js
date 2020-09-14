@@ -129,21 +129,38 @@ export default {
   tasks: {
     all: 'All Tasks',
     due: 'Due Date',
+    points: 'Points',
     open: 'Open',
     closed: 'Closed',
     status: 'Status',
     apply: 'Apply',
     assigned: 'Assigned',
-    alreadyApplied: 'You\'ve already applied for this task.'
-  },
-  taskForm: {
+    solved: 'Solved',
+    alreadyApplied: 'You\'ve already applied for this task.',
+    meAssigned: 'You\'re assigned for this task.',
+    markSolved: 'Mark as solved',
+    solvedBy: 'Solved by',
+    notSolved: 'Not Solved.',
+    assignedTo: 'Assigned to',
+    notAssigned: 'Not assigned yet.',
+    applicants: 'Applicants',
+    noApplicants: 'No applicants yet.',
     title: 'Title',
     date: 'Due Date',
     excerpt: 'Excerpt',
-    description: 'Description'
+    description: 'Description',
+    category: 'Category',
+    assign: 'Assign',
+    usAssign: 'Remove'
   },
   // Messages
   msg: {
     applySuccess: 'Thank you for applying. Our team will contact you soon.'
+  },
+  //Buttons
+  button: {
+    cancel: 'Cancel',
+    save: 'Save',
+    edit: 'Edit'
   }
 }
