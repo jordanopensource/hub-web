@@ -116,6 +116,8 @@ export default {
     titles: 'Titles',
     general: 'General',
     nameTitle: 'Name & Title',
+    privacy: 'Privacy',
+    private: 'Private',
     en: '(English)',
     ar: '(Arabic)',
     optional: '(Optional)',
