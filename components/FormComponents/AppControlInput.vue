@@ -90,6 +90,9 @@
     @apply inline;
   }
 
+  .label {
+    @apply mb-2;
+  }
   input[type="date"] {
     @apply uppercase;
   }
