@@ -11,7 +11,7 @@
           <section class="name-section">
             <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
             <div>
-              <appButton btn-style="button-blue-full ltr:mr-2 rtl:ml-2" type="submit">{{ $t('button.save') }}
+              <appButton btn-style="button-blue-full ltr:mr-2 rtl:ml-2 mb-4 sm:mb-0" type="submit">{{ $t('button.save') }}
               </appButton>
               <nuxt-link to="/me" class="button button-grey inline-block">{{ $t('button.cancel') }}</nuxt-link>
             </div>
