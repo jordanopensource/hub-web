@@ -78,11 +78,11 @@
         </section>
       </div>
       <div class="main">
-        <section>
+        <section v-if="member.about">
           <h3>{{ $t('members.about') }}</h3>
           <div>{{ member.about}}</div>
         </section>
-        <section>
+        <section v-if="interests.length">
           <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
@@ -90,7 +90,13 @@
             </span>
           </div>
         </section>
-        <section>
+        <section v-if="member.activities.length">
+          <h3>{{ $t('members.activities') }}</h3>
+          <div>
+            <activity v-for="activity in member.activities" :key="activity.id" :activity="activity" class="mb-8 mt-4 last:mb-0" />
+          </div>
+        </section>
+        <section v-if="member.solvedTasks.length">
           <h3>{{ $t('members.tasks') }}</h3>
           <div>
             <solvedTask v-for="task in member.solvedTasks" :key="task.id" :task="task" class="mb-8 mt-4 last:mb-0" />
@@ -106,6 +112,7 @@
   import appImage from '~/components/UI/appImage';
   import badges from '~/components/Members/Badges';
   import solvedTask from '~/components/Tasks/SolvedTask';
+  import activity from '~/components/Members/Activity';
   export default {
     data() {
       return {
@@ -120,7 +127,8 @@
     components: {
       appImage,
       badges,
-      solvedTask
+      solvedTask,
+      activity
     },
     props: {
       member: {

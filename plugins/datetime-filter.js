@@ -7,7 +7,7 @@ const dateTime = (dt, lang) => {
 };
 
 const monthYear = (dt, lang) => {
-    return moment(dt).locale(lang).format("MMM YYYY");
+    return moment(dt).locale(lang).format("MMMM YYYY");
 }
 
 const fullDate = (dt, lang) => {
