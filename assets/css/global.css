@@ -134,6 +134,10 @@ a.active {
   -ms-grid-columns: min-content;
 }
 
+.icon {
+  @apply text-josa-warm-grey-dark text-2xl;
+}
+
 /* Categories Menu */
 .cat-link {
   @apply cursor-pointer text-lg;
