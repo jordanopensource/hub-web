@@ -80,7 +80,8 @@ export default {
     about: 'About',
     interests: 'Interests',
     contacts: 'Contacts',
-    tasks: 'Completed Tasks'
+    tasks: 'Completed Tasks',
+    activities: 'JOSA Activities'
   },
   // Sort
   sort: {
