@@ -11,7 +11,8 @@
         </div>
       </div>
       <section class="w-full">
-        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">{{ $t('button.editProfile') }}</nuxt-link>
+        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
+          {{ $t('button.editProfile') }}</nuxt-link>
         <div v-if="titles">
           <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
         </div>
@@ -26,7 +27,8 @@
       <div class="main">
         <section class="name-section">
           <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
-        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">{{ $t('button.editProfile') }}</nuxt-link>
+          <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
+            {{ $t('button.editProfile') }}</nuxt-link>
           <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
@@ -88,6 +90,12 @@
             </span>
           </div>
         </section>
+        <section>
+          <h3>{{ $t('members.tasks') }}</h3>
+          <div>
+            <solvedTask v-for="task in member.solvedTasks" :key="task.id" :task="task" class="mb-8 mt-4 last:mb-0" />
+          </div>
+        </section>
       </div>
     </div>
 
@@ -97,7 +105,7 @@
 <script>
   import appImage from '~/components/UI/appImage';
   import badges from '~/components/Members/Badges';
-
+  import solvedTask from '~/components/Tasks/SolvedTask';
   export default {
     data() {
       return {
@@ -111,7 +119,8 @@
     },
     components: {
       appImage,
-      badges
+      badges,
+      solvedTask
     },
     props: {
       member: {

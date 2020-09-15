@@ -79,7 +79,8 @@ export default {
     badges: 'Badges',
     about: 'About',
     interests: 'Interests',
-    contacts: 'Contacts'
+    contacts: 'Contacts',
+    tasks: 'Completed Tasks'
   },
   // Sort
   sort: {
