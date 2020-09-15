@@ -78,11 +78,11 @@
         </section>
       </div>
       <div class="main">
-        <section>
+        <section v-if="member.about">
           <h3>{{ $t('members.about') }}</h3>
           <div>{{ member.about}}</div>
         </section>
-        <section>
+        <section v-if="interests.length">
           <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
@@ -90,7 +90,7 @@
             </span>
           </div>
         </section>
-        <section>
+        <section v-if="member.solvedTasks.length">
           <h3>{{ $t('members.tasks') }}</h3>
           <div>
             <solvedTask v-for="task in member.solvedTasks" :key="task.id" :task="task" class="mb-8 mt-4 last:mb-0" />
