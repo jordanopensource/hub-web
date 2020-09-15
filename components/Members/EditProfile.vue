@@ -23,7 +23,7 @@
         <div class="main">
           <section>
             <h3>{{ $t('regForm.privacy') }}</h3>
-            <checkbox id="privacy" :value="user.private" v-model="user.private" :label="user.private ? 'Visible only to JOSA members' : 'Visible to everyone'"/>
+            <toggleButton id="privacy" :value="user.private" v-model="user.private" :label="user.private ? 'Visible only to JOSA members' : 'Visible to everyone'"/>
           </section>
           <section>
             <h3>{{ $t('regForm.personalInfo') }}</h3>
@@ -127,7 +127,7 @@
   import appControlInput from "~/components/FormComponents/AppControlInput";
   import appButton from "~/components/FormComponents/AppButton";
   import radioButton from '~/components/FormComponents/RadioButton';
-  import checkbox from '~/components/FormComponents/Checkbox';
+  import toggleButton from '~/components/FormComponents/ToggleButton';
   export default {
     data() {
       return {
@@ -162,7 +162,7 @@
       appControlInput,
       appButton,
       radioButton,
-      checkbox
+      toggleButton
     },
     props: {
       member: {
