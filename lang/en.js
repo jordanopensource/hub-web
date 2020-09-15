@@ -3,17 +3,16 @@ export default {
   copyright: {
     info: 'All the content on this website is licensed under a Creative Commons Attribution-ShareAlike Unported license, except where otherwise mentioned.'
   },
-  // Buttons
-  button: {
-    membersHub: 'Members Hub',
-    login: 'Login',
-  },
   // Social Media Links
   socialMedia: {
     fbPage: 'Facebook Page',
     fbGroup: 'Facebook Group',
     twitter: 'Twitter',
-    instagram: 'Instagram'
+    instagram: 'Instagram',
+    facebook: 'Facebook',
+    twitter: 'Twitter',
+    github: 'Github',
+    linkedin: 'Linkedin'
   },
   // About JOSA
   josa: {
@@ -79,7 +78,10 @@ export default {
     since: 'Member Since',
     badges: 'Badges',
     about: 'About',
-    interests: 'Interests'
+    interests: 'Interests',
+    contacts: 'Contacts',
+    tasks: 'Completed Tasks',
+    activities: 'JOSA Activities'
   },
   // Sort
   sort: {
@@ -116,12 +118,13 @@ export default {
     titles: 'Titles',
     general: 'General',
     nameTitle: 'Name & Title',
+    privacy: 'Privacy',
+    private: 'Private',
     en: '(English)',
     ar: '(Arabic)',
     optional: '(Optional)',
     commaSeperated: '(comma seperated)',
     submit: 'Submit',
-    save: 'Save',
     welcome: 'Welcome to JOSA',
     thanks: 'Thank you for registering your profile. Please check your inbox for the verification email and follow along to set your credintials.'
   },
@@ -129,21 +132,41 @@ export default {
   tasks: {
     all: 'All Tasks',
     due: 'Due Date',
+    points: 'Points',
     open: 'Open',
     closed: 'Closed',
     status: 'Status',
     apply: 'Apply',
     assigned: 'Assigned',
-    alreadyApplied: 'You\'ve already applied for this task.'
-  },
-  taskForm: {
+    solved: 'Solved',
+    alreadyApplied: 'You\'ve already applied for this task.',
+    meAssigned: 'You\'re assigned for this task.',
+    markSolved: 'Mark as solved',
+    solvedBy: 'Solved by',
+    notSolved: 'Not Solved.',
+    assignedTo: 'Assigned to',
+    notAssigned: 'Not assigned yet.',
+    applicants: 'Applicants',
+    noApplicants: 'No applicants yet.',
     title: 'Title',
     date: 'Due Date',
     excerpt: 'Excerpt',
-    description: 'Description'
+    description: 'Description',
+    category: 'Category',
+    assign: 'Assign',
+    usAssign: 'Remove'
   },
   // Messages
   msg: {
     applySuccess: 'Thank you for applying. Our team will contact you soon.'
-  }
+  },
+  //Buttons
+  button: {
+    cancel: 'Cancel',
+    save: 'Save',
+    edit: 'Edit',
+    editProfile: 'Edit Profile',
+    membersHub: 'Members Hub',
+    login: 'Login',
+  },
 }

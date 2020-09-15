@@ -10,13 +10,21 @@
         <div class="main">
           <section class="name-section">
             <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
-            <appButton btn-style="button-blue-full submit-button" type="submit">{{ $t('regForm.save') }}</appButton>
+            <div>
+              <appButton btn-style="button-blue-full ltr:mr-2 rtl:ml-2 mb-4 sm:mb-0" type="submit">{{ $t('button.save') }}
+              </appButton>
+              <nuxt-link to="/me" class="button button-grey inline-block">{{ $t('button.cancel') }}</nuxt-link>
+            </div>
           </section>
         </div>
       </div>
       <!-- Information Section -->
       <div class="w-full flex flex-wrap md:flex-no-wrap">
         <div class="main">
+          <section>
+            <h3>{{ $t('regForm.privacy') }}</h3>
+            <toggleButton id="privacy" :value="user.private" v-model="user.private" :label="user.private ? 'Visible only to JOSA members' : 'Visible to everyone'"/>
+          </section>
           <section>
             <h3>{{ $t('regForm.personalInfo') }}</h3>
             <appControlInput v-model="user.fullName_en" controlType="input">
@@ -42,6 +50,27 @@
             </appControlInput>
             <appControlInput v-model="user.phone" controlType="input" placeholder="+962">
               <template v-slot:label>{{ $t('regForm.phone') }}</template>
+            </appControlInput>
+            <!-- Social Media -->
+            <appControlInput v-model="user.github" controlType="input" placeholder="Username">
+              <template v-slot:label>
+                <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'github' ]" />
+                {{ $t('socialMedia.github') }}</template>
+            </appControlInput>
+            <appControlInput v-model="user.linkedin" controlType="input" placeholder="Username">
+              <template v-slot:label>
+                <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'linkedin' ]" />
+                {{ $t('socialMedia.linkedin') }}</template>
+            </appControlInput>
+            <appControlInput v-model="user.twitter" controlType="input" placeholder="Username">
+              <template v-slot:label>
+                <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'twitter' ]" />
+                {{ $t('socialMedia.twitter') }}</template>
+            </appControlInput>
+            <appControlInput v-model="user.facebook" controlType="input" placeholder="Username">
+              <template v-slot:label>
+                <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'facebook' ]" />
+                {{ $t('socialMedia.facebook') }}</template>
             </appControlInput>
           </section>
           <section>
@@ -98,7 +127,7 @@
   import appControlInput from "~/components/FormComponents/AppControlInput";
   import appButton from "~/components/FormComponents/AppButton";
   import radioButton from '~/components/FormComponents/RadioButton';
-
+  import toggleButton from '~/components/FormComponents/ToggleButton';
   export default {
     data() {
       return {
@@ -118,7 +147,12 @@
           birthDate: this.member.birthDate,
           titles: this.member.titles,
           about: this.member.about,
-          interests: this.member.interests
+          interests: this.member.interests,
+          facebook: this.member.facebook,
+          twitter: this.member.twitter,
+          github: this.member.github,
+          linkedin: this.member.linkedin,
+          private: this.member.private
         }
       }
     },
@@ -127,7 +161,8 @@
       badges,
       appControlInput,
       appButton,
-      radioButton
+      radioButton,
+      toggleButton
     },
     props: {
       member: {
@@ -227,10 +262,6 @@
 
   .top-full {
     top: 100%
-  }
-
-  .submit-button {
-    max-width: 100px;
   }
 
 </style>

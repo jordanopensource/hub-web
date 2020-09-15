@@ -2,24 +2,28 @@
   <form @submit.prevent="onSave">
     <h2 v-if="editedTask['title_en']" class="title text-3xl m-0 inline-block mb-8">{{ editedTask['title_en'] }}</h2>
     <appControlInput v-model="editedTask.title_en" controlType="input" required>
-      <template v-slot:label>{{ $t('taskForm.title') }}</template>
+      <template v-slot:label>{{ $t('tasks.title') }}</template>
     </appControlInput>
     <appControlInput v-model="editedTask.dueDate" controlType="date">
-      <template v-slot:label>{{ $t('taskForm.date') }}</template>
+      <template v-slot:label>{{ $t('tasks.date') }}</template>
     </appControlInput>
-    <label>Category</label>
+    <appControlInput v-model="editedTask.points" controlType="number" :min="1" placeholder="1">
+      <template v-slot:label>{{ $t('tasks.points') }}</template>
+    </appControlInput>
+    <label class="pb-2 block">{{ $t('tasks.category') }}</label>
     <div class="flex mb-4">
       <radioButton v-for="cat in categories" :key="cat.id" :id="cat.id" class="radio" :value="cat.id"
         :label="cat.title_en" v-model="editedTask.category.id" />
     </div>
     <appControlInput v-model="editedTask.excerpt_en" controlType="textarea">
-      <template v-slot:sub>{{ $t('taskForm.excerpt') }}</template>
+      <template v-slot:sub>{{ $t('tasks.excerpt') }}</template>
     </appControlInput>
     <appControlInput v-model="editedTask.description_en" controlType="textarea">
-      <template v-slot:sub>{{ $t('taskForm.description') }}</template>
+      <template v-slot:sub>{{ $t('tasks.description') }}</template>
     </appControlInput>
-    <appButton btn-style="button-blue-full" type="submit">Save</appButton>
-    <appButton type="button" style="margin-left: 10px" btn-style="button-grey" @click="onCancel">Cancel</appButton>
+    <appButton btn-style="button-blue-full" type="submit">{{ $t('button.save') }}</appButton>
+    <appButton type="button" style="margin-left: 10px" btn-style="button-grey" @click="onCancel">
+      {{ $t('button.cancel') }}</appButton>
   </form>
 </template>
 
@@ -57,7 +61,8 @@
           dueDate: null,
           category: {
             id: null
-          }
+          },
+          points: null
         }
       };
     },

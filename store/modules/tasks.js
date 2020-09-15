@@ -1,40 +1,7 @@
 // Tasks Store
 import axios from 'axios';
 
-const state = {
-  applicants: []
-};
-
-const getters = {
-  applicants(state) {
-    return (state.applicants)
-  }
-};
-
-const mutations = {
-  setApplicants(state, applicants) {
-    state.applicants = applicants
-  }
-};
-
 const actions = {
-  async addApplicant(vuexContext, task) {
-    const token = vuexContext.getters.auth.accessToken;
-    const header = {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    }
-    await axios
-      .put(process.env.baseUrl + "/tasks/" + task.id, task, header)
-      .then(res => {
-        var ar = res.data.applicants.map((applicant) => applicant.user.id);
-        vuexContext.commit("setApplicants", ar);
-        })
-  },
-  setApplicants(vuexContext, applicantsArray) {
-    vuexContext.commit("setApplicants", applicantsArray);
-  },
   addTask(vuexContext, task) {
     const token = vuexContext.getters.auth.accessToken;
     const header = {
@@ -69,8 +36,5 @@ const actions = {
 };
 
 export default {
-  state,
-  mutations,
-  actions,
-  getters
+  actions
 }

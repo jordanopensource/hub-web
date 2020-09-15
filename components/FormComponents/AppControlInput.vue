@@ -9,6 +9,8 @@
     </div>
     <input v-if="controlType === 'input'" v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"
       :placeholder="placeholder" :required="required">
+    <input v-if="controlType === 'number'" type="number" :min="min" :max="max" v-bind="$attrs" :value="value" @input="$emit('input', $event.target.value)"
+      :placeholder="placeholder" :required="required">
     <input v-if="controlType === 'date'" type="date" v-bind="$attrs" :value="value"
       @input="$emit('input', $event.target.value)" :placeholder="placeholder" :required="required">
     <input v-if="controlType === 'email'" type="email" v-bind="$attrs" :value="value"
@@ -39,6 +41,12 @@
       required: {
         type: Boolean,
         default: false
+      },
+      min: {
+        type: Number
+      },
+      max: {
+        type: Number
       }
     }
   }
@@ -55,11 +63,12 @@
     @apply p-3 bg-josa-warm-grey-light w-full;
   }
 
-  .input-control input{
+  .input-control input {
     max-width: 400px;
   }
 
-  input::placeholder, input:disabled {
+  input::placeholder,
+  input:disabled {
     @apply text-josa-warm-grey-dark;
   }
 
@@ -81,6 +90,9 @@
     @apply inline;
   }
 
+  .label {
+    @apply mb-2;
+  }
   input[type="date"] {
     @apply uppercase;
   }

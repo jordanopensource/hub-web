@@ -55,7 +55,7 @@
       MemberPreview
     },
     created() {
-      this.$store.dispatch('fetchMembers');
+      this.$store.dispatch('fetchUsers');
       this.$store.dispatch('countMembers');
     },
     computed: {

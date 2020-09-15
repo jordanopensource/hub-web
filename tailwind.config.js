@@ -22,6 +22,10 @@ module.exports = {
           default: '#efedec',
           'dark': '#aea79f',
         },
+        'josa-red': {
+          default: '#dd4814',
+          'dark': '#b83b10'
+        },
         'josa-black': '#2e3436',
         'grey90': '#e5e5e5',
         'grey70': '#707070'
@@ -60,7 +64,7 @@ module.exports = {
     }
   },
   variants: {
-    margin: ['responsive', 'direction'],
+    margin: ['responsive', 'direction', 'last'],
     padding: ['responsive', 'direction'],
     textAlign: ['responsive', 'direction'],
     fontSize: ['responsive', 'direction'],

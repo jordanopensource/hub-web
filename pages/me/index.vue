@@ -10,9 +10,7 @@
   export default {
     layout: "default",
     middleware: 'authenticated',
-    asyncData({
-      store
-    }) {
+    asyncData({store}) {
       return {
         member: store.getters.user
       }

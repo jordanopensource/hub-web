@@ -11,9 +11,8 @@
         </div>
       </div>
       <section class="w-full">
-        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 block">
-          <h5>Edit profile</h5>
-        </nuxt-link>
+        <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
+          {{ $t('button.editProfile') }}</nuxt-link>
         <div v-if="titles">
           <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
         </div>
@@ -28,9 +27,8 @@
       <div class="main">
         <section class="name-section">
           <h4 class="title">{{ member.fullName_en | capitalize }}</h4>
-          <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="-mt-8 block">
-            <h5>Edit profile</h5>
-          </nuxt-link>
+          <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
+            {{ $t('button.editProfile') }}</nuxt-link>
           <div v-if="titles">
             <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
           </div>
@@ -51,6 +49,28 @@
           <p class="text-lg">{{ member.memberSince? member.memberSince : member.created_at  | monthYear($i18n.locale) }}
           </p>
         </section>
+        <!-- Social Accounts -->
+        <section>
+          <h5>{{ $t('members.contacts') }}</h5>
+          <div class="en">
+            <span v-if="member.github" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'github' ]" />
+              <a :href="link.github + member.github" target="_blank" class="text-sm">/{{ member.github }}</a>
+            </span>
+            <span v-if="member.linkedin" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'linkedin' ]" />
+              <a :href="link.linkedin + member.linkedin" target="_blank" class="text-sm">/{{ member.linkedin }}</a>
+            </span>
+            <span v-if="member.twitter" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'twitter' ]" />
+              <a :href="link.twitter + member.twitter" target="_blank" class="text-sm">@{{ member.twitter }}</a>
+            </span>
+            <span v-if="member.facebook" class="whitespace-no-wrap block my-4 last:mb-0">
+              <font-awesome-icon class="ltr:mr-2 rtl:ml-2" :icon="['fab', 'github' ]" />
+              <a :href="link.facebook + member.facebook" target="_blank" class="text-sm">/{{ member.facebook }}</a>
+            </span>
+          </div>
+        </section>
         <!-- Badges -->
         <section>
           <h5>{{ $t('members.badges') }}</h5>
@@ -58,16 +78,28 @@
         </section>
       </div>
       <div class="main">
-        <section>
+        <section v-if="member.about">
           <h3>{{ $t('members.about') }}</h3>
           <div>{{ member.about}}</div>
         </section>
-        <section>
+        <section v-if="interests.length">
           <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
               {{ interest | lowercase | capitalize({ onlyFirstLetter: true }) }}
             </span>
+          </div>
+        </section>
+        <section v-if="member.activities.length">
+          <h3>{{ $t('members.activities') }}</h3>
+          <div>
+            <activity v-for="activity in member.activities" :key="activity.id" :activity="activity" class="mb-8 mt-4 last:mb-0" />
+          </div>
+        </section>
+        <section v-if="member.solvedTasks.length">
+          <h3>{{ $t('members.tasks') }}</h3>
+          <div>
+            <solvedTask v-for="task in member.solvedTasks" :key="task.id" :task="task" class="mb-8 mt-4 last:mb-0" />
           </div>
         </section>
       </div>
@@ -79,11 +111,24 @@
 <script>
   import appImage from '~/components/UI/appImage';
   import badges from '~/components/Members/Badges';
-
+  import solvedTask from '~/components/Tasks/SolvedTask';
+  import activity from '~/components/Members/Activity';
   export default {
+    data() {
+      return {
+        link: {
+          github: 'https://github.com/',
+          linkedin: 'https://linkedin.com/in/',
+          twitter: 'https://twitter.com/',
+          facebook: 'https://facebook.com/'
+        }
+      }
+    },
     components: {
       appImage,
-      badges
+      badges,
+      solvedTask,
+      activity
     },
     props: {
       member: {
