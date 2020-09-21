@@ -67,6 +67,7 @@ export default {
     '@nuxtjs/moment',
     'nuxt-fontawesome',
     '@nuxtjs/markdownit',
+    '@nuxtjs/apollo',
   ],
   fontawesome: {
     imports: [
@@ -124,6 +125,12 @@ export default {
       'markdown-it-attrs'
     ]
   },
+  apollo: {
+    clientConfigs: {
+      default: '~/plugins/apollo-config.js'
+    }
+  },
+
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
@@ -142,5 +149,8 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+  publicRuntimeConfig: {
+    githubToken: process.env.GITHUB_TOKEN
   }
 }

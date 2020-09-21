@@ -81,7 +81,9 @@ export default {
     interests: 'Interests',
     contacts: 'Contacts',
     tasks: 'Completed Tasks',
-    activities: 'JOSA Activities'
+    activities: 'JOSA Activities',
+    contributions: 'Contributions',
+    commits: 'Commits on'
   },
   // Sort
   sort: {

@@ -135,7 +135,7 @@ a.active {
 }
 
 .icon {
-  @apply text-josa-warm-grey-dark text-2xl;
+  @apply text-josa-black text-3xl inline-block;
 }
 
 /* Categories Menu */
