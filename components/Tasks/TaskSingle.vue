@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-josa-blue text-xl mb-2">{{ task.category['title_' + $i18n.locale] }}</div>
+    <div v-if="task.category" class="text-josa-blue text-xl mb-2">{{ task.category['title_' + $i18n.locale] ? task.category['title_' + $i18n.locale] : '' }}</div>
     <div>
       <!-- Title -->
       <h2 class="text-3xl m-0 inline-block">
@@ -47,21 +47,26 @@
       </div>
       <!-- Sidebar -->
       <div class="w-full md:w-2/5 mb-8">
+        <!-- Task Owner -->
+        <div class="mb-8">
+          <h3>{{ $t('tasks.taskOwner') }}</h3>
+          <user :user="task.taskOwner" class="mb-8"/>
+        </div>
         <!-- Solved by -->
         <div v-if="task.solved" class="mb-8">
           <h3>{{ $t('tasks.solvedBy') }}</h3>
           <div v-if="solvedBy">
             <applicant v-for="applicant in solvedBy" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" :taskSolved="task.solved" :showControls="false" />
           </div>
           <p v-else>{{ $t('tasks.notSolved') }}</p>
         </div>
         <!-- Assigned to -->
-        <div v-if="!task.solved && ifTaskOwner()" class="mb-8">
+        <div v-if="!task.solved" class="mb-8">
           <h3>{{ $t('tasks.assignedTo') }}</h3>
           <div v-if="assignedTo">
             <applicant v-for="applicant in assignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" @unAssign="unAssignUser" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" @unAssign="unAssignUser" :taskSolved="task.solved" :showControls="ifTaskOwner()" />
           </div>
           <p v-else>{{ $t('tasks.notAssigned') }}</p>
         </div>
@@ -70,7 +75,7 @@
           <h3>{{ $t('tasks.applicants') }}</h3>
           <div v-if="ifApplicants()">
             <applicant v-for="applicant in notAssignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" @assign="assignUser" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" @assign="assignUser" :taskSolved="task.solved" :showControls="ifTaskOwner()" />
           </div>
           <p v-else>{{ $t('tasks.noApplicants') }}</p>
         </div>
@@ -84,12 +89,14 @@
   import infoCard from '~/components/Tasks/InfoCard';
   import appButton from '~/components/FormComponents/AppButton';
   import applicant from '~/components/Tasks/Applicant';
+  import user from '~/components/UI/User';
   export default {
     name: 'TaskSingle',
     components: {
       infoCard,
       appButton,
-      applicant
+      applicant,
+      user
     },
     props: {
       task: {
@@ -200,16 +207,15 @@
           points: this.task.points,
           task: this.task
         }
-        let userSolvedTasks
-
         // Fetch user's solved tasks and push this task to it
-        const user = await axios.get(process.env.baseUrl + "/users/" + userId).then(res => {
-          userSolvedTasks = res.data.solvedTasks
-        })
+        await this.$store.dispatch('fetchOneUser', userId)
+        let userSolvedTasks = this.$store.getters.loadedUser.solvedTasks
+        let badges = this.$store.getters.loadedUser.badges
         userSolvedTasks.push(solvedTask)
         const tempUser = {
           id: userId,
-          solvedTasks: userSolvedTasks
+          solvedTasks: userSolvedTasks,
+          badges : badges
         }
         await this.$store.dispatch('updateUser', tempUser)
 

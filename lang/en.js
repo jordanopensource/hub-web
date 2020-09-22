@@ -150,6 +150,7 @@ export default {
     notAssigned: 'Not assigned yet.',
     applicants: 'Applicants',
     noApplicants: 'No applicants yet.',
+    taskOwner: 'Task owner',
     title: 'Title',
     date: 'Due Date',
     excerpt: 'Excerpt',
