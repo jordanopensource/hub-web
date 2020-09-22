@@ -47,6 +47,11 @@
       </div>
       <!-- Sidebar -->
       <div class="w-full md:w-2/5 mb-8">
+        <!-- Task Owner -->
+        <div class="mb-8">
+          <h3>{{ $t('tasks.taskOwner') }}</h3>
+          <user :user="task.taskOwner" class="mb-8"/>
+        </div>
         <!-- Solved by -->
         <div v-if="task.solved" class="mb-8">
           <h3>{{ $t('tasks.solvedBy') }}</h3>
@@ -84,12 +89,14 @@
   import infoCard from '~/components/Tasks/InfoCard';
   import appButton from '~/components/FormComponents/AppButton';
   import applicant from '~/components/Tasks/Applicant';
+  import user from '~/components/UI/User';
   export default {
     name: 'TaskSingle',
     components: {
       infoCard,
       appButton,
-      applicant
+      applicant,
+      user
     },
     props: {
       task: {
