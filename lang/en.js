@@ -81,7 +81,9 @@ export default {
     interests: 'Interests',
     contacts: 'Contacts',
     tasks: 'Completed Tasks',
-    activities: 'JOSA Activities'
+    activities: 'JOSA Activities',
+    contributions: 'Contributions',
+    commits: 'Commits on'
   },
   // Sort
   sort: {
@@ -148,6 +150,7 @@ export default {
     notAssigned: 'Not assigned yet.',
     applicants: 'Applicants',
     noApplicants: 'No applicants yet.',
+    taskOwner: 'Task owner',
     title: 'Title',
     date: 'Due Date',
     excerpt: 'Excerpt',

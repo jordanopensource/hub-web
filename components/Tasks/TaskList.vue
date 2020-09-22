@@ -24,7 +24,6 @@
       },
       category: {
         type: String,
-        required: true
       },
       numberOfTasks: {
         type: Number,

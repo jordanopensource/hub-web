@@ -135,7 +135,7 @@ a.active {
 }
 
 .icon {
-  @apply text-josa-warm-grey-dark text-2xl;
+  @apply text-josa-black text-3xl inline-block;
 }
 
 /* Categories Menu */
@@ -238,16 +238,16 @@ a.active {
 
 /* Status */
 .closed {
-  @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+  @apply uppercase text-red-700 text-sm rounded-lg inline-block leading-none;
 }
 .solved {
-  @apply uppercase text-red-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+  @apply uppercase text-red-700 text-sm rounded-lg inline-block leading-none;
 }
 .open {
-  @apply uppercase text-green-700 px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+  @apply uppercase text-green-700 text-sm rounded-lg inline-block leading-none;
 }
 .assigned {
-  @apply uppercase text-josa-blue-dark px-2 py-1 text-sm rounded-lg text-center inline-block leading-none;
+  @apply uppercase text-josa-blue-dark text-sm rounded-lg inline-block leading-none;
 }
 /*****/
 
