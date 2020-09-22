@@ -7,9 +7,9 @@
       <nuxt-link :to="'/members/' + applicant.user.id">
         <h3 class="font-bold">{{ applicant.user.fullName_en }}</h3>
       </nuxt-link>
-      <p @click="assign" v-if="!assigned && !taskSolved" class="text-sm cursor-pointer text-green-900">
+      <p @click="assign" v-if="!assigned && !taskSolved && showControls" class="text-sm cursor-pointer text-green-900">
         {{ $t('tasks.assign') }}</p>
-      <p @click="unAssign" v-if="assigned && !taskSolved" class="text-sm cursor-pointer text-josa-red">
+      <p @click="unAssign" v-if="assigned && !taskSolved && showControls" class="text-sm cursor-pointer text-josa-red">
         {{ $t('tasks.usAssign') }}</p>
     </div>
   </div>
@@ -18,7 +18,7 @@
 <script>
   import appImage from '~/components/UI/appImage';
   export default {
-    name: 'Speakers',
+    name: 'Applicant',
     props: {
       applicant: {
         type: Object,
@@ -29,6 +29,10 @@
         default: false
       },
       taskSolved: {
+        type: Boolean,
+        default: false
+      },
+      showControls: {
         type: Boolean,
         default: false
       }

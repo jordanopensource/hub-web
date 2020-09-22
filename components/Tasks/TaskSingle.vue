@@ -52,16 +52,16 @@
           <h3>{{ $t('tasks.solvedBy') }}</h3>
           <div v-if="solvedBy">
             <applicant v-for="applicant in solvedBy" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" :taskSolved="task.solved" :showControls="false" />
           </div>
           <p v-else>{{ $t('tasks.notSolved') }}</p>
         </div>
         <!-- Assigned to -->
-        <div v-if="!task.solved && ifTaskOwner()" class="mb-8">
+        <div v-if="!task.solved" class="mb-8">
           <h3>{{ $t('tasks.assignedTo') }}</h3>
           <div v-if="assignedTo">
             <applicant v-for="applicant in assignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" @unAssign="unAssignUser" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" @unAssign="unAssignUser" :taskSolved="task.solved" :showControls="ifTaskOwner()" />
           </div>
           <p v-else>{{ $t('tasks.notAssigned') }}</p>
         </div>
@@ -70,7 +70,7 @@
           <h3>{{ $t('tasks.applicants') }}</h3>
           <div v-if="ifApplicants()">
             <applicant v-for="applicant in notAssignedTo" :key="applicant.user.id" :applicant="applicant" class="mb-8"
-              :assigned="assignedTo?true:false" @assign="assignUser" :taskSolved="task.solved" />
+              :assigned="assignedTo?true:false" @assign="assignUser" :taskSolved="task.solved" :showControls="ifTaskOwner()" />
           </div>
           <p v-else>{{ $t('tasks.noApplicants') }}</p>
         </div>
