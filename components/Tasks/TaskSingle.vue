@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-josa-blue text-xl mb-2">{{ task.category['title_' + $i18n.locale] }}</div>
+    <div v-if="task.category" class="text-josa-blue text-xl mb-2">{{ task.category['title_' + $i18n.locale] ? task.category['title_' + $i18n.locale] : '' }}</div>
     <div>
       <!-- Title -->
       <h2 class="text-3xl m-0 inline-block">
@@ -200,16 +200,15 @@
           points: this.task.points,
           task: this.task
         }
-        let userSolvedTasks
-
         // Fetch user's solved tasks and push this task to it
-        const user = await axios.get(process.env.baseUrl + "/users/" + userId).then(res => {
-          userSolvedTasks = res.data.solvedTasks
-        })
+        await this.$store.dispatch('fetchOneUser', userId)
+        let userSolvedTasks = this.$store.getters.loadedUser.solvedTasks
+        let badges = this.$store.getters.loadedUser.badges
         userSolvedTasks.push(solvedTask)
         const tempUser = {
           id: userId,
-          solvedTasks: userSolvedTasks
+          solvedTasks: userSolvedTasks,
+          badges : badges
         }
         await this.$store.dispatch('updateUser', tempUser)
 

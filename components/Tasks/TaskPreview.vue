@@ -1,7 +1,7 @@
 <template>
   <div class="border border-dotted rounded-md p-4 flex flex-col justify-between">
     <div class="mb-8">
-      <h5>{{ task.category['title_' + $i18n.locale] }}</h5>
+      <h5 v-if="task.category">{{ task.category['title_' + $i18n.locale] ? task.category['title_' + $i18n.locale] : '' }}</h5>
       <nuxt-link :to="taskLink" tag="a" class="inline-block">
       <h2 class="text-3xl">{{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
       </nuxt-link>
