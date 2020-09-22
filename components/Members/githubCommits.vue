@@ -1,13 +1,17 @@
 <template>
-  <div>
-    <div v-if="user.contributionsCollection">
-      <div v-for="item in user.contributionsCollection.commitContributionsByRepository" :key="item.repository.name"
-        class="flex mb-4 items-start sm:items-center">
-        <p class="count">{{item.contributions.totalCount}}</p>
-        <font-awesome-icon class="icon ml-6 mr-3" :icon="['fab', 'github' ]" />
-        <p>{{$t('members.commits')}} {{item.repository.owner.resourcePath | stringToSlug }}/{{item.repository.name}}</p>
-      </div>
-    </div>
+  <div v-if="user.contributionsCollection">
+    <table class="table-auto">
+      <tbody>
+        <tr v-for="item in user.contributionsCollection.commitContributionsByRepository" :key="item.repository.name">
+          <td class="text-right text-2xl font-light leading-snug">{{item.contributions.totalCount}}</td>
+          <td>
+            <font-awesome-icon class="icon ml-6 mr-3" :icon="['fab', 'github' ]" />
+          </td>
+          <td>{{$t('members.commits')}} {{item.repository.owner.resourcePath | stringToSlug }}/{{item.repository.name}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -58,12 +62,14 @@
 </script>
 
 <style scoped>
-  .count {
-    @apply text-2xl font-light leading-snug text-right inline-block flex-shrink-0;
+  td {
+    @apply align-top pb-4;
   }
 
-  p {
-    @apply inline-block;
+  @screen md {
+    td {
+      @apply align-middle;
+    }
   }
 
 </style>
