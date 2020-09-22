@@ -1,12 +1,18 @@
 <template>
-  <div class="border border-dotted rounded-md p-4 flex flex-col justify-between">
-    <div class="mb-8">
-      <h5 v-if="task.category">{{ task.category['title_' + $i18n.locale] ? task.category['title_' + $i18n.locale] : '' }}</h5>
-      <nuxt-link :to="taskLink" tag="a" class="inline-block">
-      <h2 class="text-3xl">{{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
-      </nuxt-link>
-      <p v-if="task['excerpt_' + $i18n.locale]" class="text-base">{{ task['excerpt_' + $i18n.locale] }}</p>
-    </div>
+  <div class="border border-dotted rounded-md p-4">
+    <h5 v-if="task.category">{{ task.category['title_' + $i18n.locale] ? task.category['title_' + $i18n.locale] : '' }}
+    </h5>
+    <!-- Title -->
+    <nuxt-link :to="taskLink" tag="a" class="inline-block">
+      <h2 class="text-3xl">
+        {{ task['title_' + $i18n.locale] ? task['title_' + $i18n.locale] : task['title_en'] }}</h2>
+    </nuxt-link>
+    <!-- Status -->
+    <p v-if="task.open" class="inline-block text-left p-0" :class="task.assigned ? 'assigned' : 'open'">
+      {{ task.assigned ? $t('tasks.assigned') : $t('tasks.open') }}</p>
+    <p v-if="!task.open" class="inline-block" :class="task.solved ? 'solved' : 'closed'">
+      {{ task.solved ? $t('tasks.solved') : $t('tasks.closed') }}</p>
+    <p v-if="task['excerpt_' + $i18n.locale]" class="text-base">{{ task['excerpt_' + $i18n.locale] }}</p>
   </div>
 </template>
 
