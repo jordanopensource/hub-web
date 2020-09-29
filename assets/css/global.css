@@ -19,6 +19,7 @@ body {
   top: 0;
   border-top: 10px solid #3897c0;
 }
+
 .title-small::before {
   width: 50%;
 }
@@ -39,6 +40,12 @@ body {
 
 .button {
   @apply border border-solid rounded-md uppercase py-2 px-4 text-center;
+  transition: background-color, color, border-color, 0.25s linear;
+  -webkit-transition: background-color, color, border-color, 0.25s linear;
+}
+
+.button-sharp {
+  @apply border border-solid py-3 px-10 text-center;
   transition: background-color, color, border-color, 0.25s linear;
   -webkit-transition: background-color, color, border-color, 0.25s linear;
 }
@@ -69,6 +76,15 @@ body {
   border-color: #2f80a2;
 }
 
+.button-dark-blue-full {
+  @apply border-josa-blue-dark bg-josa-blue-dark;
+  color: #fff !important;
+}
+
+.button-dark-blue-full:hover {
+  @apply border-josa-blue-veryDark bg-josa-blue-veryDark;
+}
+
 .button-light {
   @apply border-josa-warm-grey text-josa-warm-grey;
 }
@@ -78,7 +94,7 @@ body {
 }
 
 .button-flat {
-  @apply rounded-none normal-case py-3 px-6 text-josa-black border-josa-black font-bold;
+  @apply text-josa-black border-josa-black font-bold;
 }
 
 .button-flat:hover {
@@ -240,25 +256,29 @@ a.active {
 .closed {
   @apply uppercase text-red-700 text-sm rounded-lg inline-block leading-none;
 }
+
 .solved {
   @apply uppercase text-red-700 text-sm rounded-lg inline-block leading-none;
 }
+
 .open {
   @apply uppercase text-green-700 text-sm rounded-lg inline-block leading-none;
 }
+
 .assigned {
   @apply uppercase text-josa-blue-dark text-sm rounded-lg inline-block leading-none;
 }
+
 /*****/
 
 /* Flash messages */
 ._vue-flash-msg-body._vue-flash-msg-body_success {
-	border: 1px solid #1a485b !important;
-	background-color: #3897c0 !important;
+  border: 1px solid #1a485b !important;
+  background-color: #3897c0 !important;
 }
 
 ._vue-flash-msg-body._vue-flash-msg-body_success ._vue-flash-msg-body__content {
-	border-left: 5px solid #1a485b !important;
+  border-left: 5px solid #1a485b !important;
 }
 
 /*****/
