@@ -1,14 +1,17 @@
 <template>
   <div id="homepage">
     <banner :title="meta['title_' + $i18n.locale]" :description="meta['description_' + $i18n.locale]" />
+    <stepsList :steps="steps" class="mt-12" />
   </div>
 </template>
 <script>
   import axios from 'axios';
   import banner from '~/components/Home/Banner';
+  import stepsList from '~/components/Steps/StepsList';
   export default {
     components: {
-      banner
+      banner,
+      stepsList
     },
     head() {
       const i18nSeo = this.$nuxtI18nSeo()
@@ -25,8 +28,10 @@
     },
     async asyncData(context) {
       const pageMeta = await axios.get(process.env.baseUrl + '/page-metas?pageId=hubHome');
+      const steps = await axios.get(process.env.baseUrl + '/become-member');
       return {
         meta: pageMeta.data[0],
+        steps: steps.data
       }
     },
   }
