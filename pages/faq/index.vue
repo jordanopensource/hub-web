@@ -6,7 +6,7 @@
       <div class="px-12 flex flex-col-reverse md:flex-row " v-if="ifNotEmpty()">
         <!-- Section Content -->
         <template v-for="section in content.section">
-          <div :key="section.sectionId" v-if="activeSection == section.sectionId" class="section-content flex-grow pt-8 md:pt-0">
+          <div :key="section.sectionId" v-if="activeSection == section.sectionId" class="section-content flex-grow pt-8 md:pt-0 md:ltr:pr-12 md:rtl:pl-12">
             <span v-if="section['description_' + $i18n.locale]" v-html="section['description_' + $i18n.locale]"></span>
             <span v-else></span>
           </div>
