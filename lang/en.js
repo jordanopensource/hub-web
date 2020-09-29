@@ -72,6 +72,7 @@ export default {
   // Members
   members: {
     members: 'Members',
+    membersDir: 'Members Directory',
     supporter: 'Supporter Member',
     active: 'Active Member',
     id: 'Member ID',
@@ -83,7 +84,8 @@ export default {
     tasks: 'Completed Tasks',
     activities: 'JOSA Activities',
     contributions: 'Contributions',
-    commits: 'Commits on'
+    commits: 'Commits on',
+    myProfile: 'My Profile'
   },
   // Sort
   sort: {
@@ -171,5 +173,7 @@ export default {
     editProfile: 'Edit Profile',
     membersHub: 'Members Hub',
     login: 'Login',
+    signup: 'Sign Up',
+
   },
 }
