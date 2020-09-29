@@ -138,7 +138,7 @@ export default {
   axios: {
   },
   env: {
-    baseUrl: 'https://api.portal.jordanopensource.org'
+    baseUrl: 'http://localhost:1337'
   },
   /*
   ** Build configuration
