@@ -1,9 +1,10 @@
 //<![CDATA[
 var owa_baseUrl = 'https://owa.jordanopensource.org/';
 var owa_cmds = owa_cmds || [];
-owa_cmds.push(['setSiteId', 'fc6c28c7ac1567d90882a87974704ef0']);
+owa_cmds.push(['setSiteId', '05c6b08f62ca94551f60c95d3760611e']);
 owa_cmds.push(['trackPageView']);
 owa_cmds.push(['trackClicks']);
+owa_cmds.push(['trackDomStream']);
 
 (function() {
     var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
