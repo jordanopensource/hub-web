@@ -2,7 +2,7 @@
   <div class="flex flex-wrap md:flex-no-wrap w-full pt-4 border-t border-dotted">
     <!-- Profile Picture -->
     <nuxt-link :to="memberLink">
-      <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture ltr:mr-4 rtl:ml-4 mb-4" />
+      <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture ltr:mr-4 rtl:ml-4 mb-2" />
       <img v-else class="profilePicture ltr:mr-4 rtl:ml-4 mb-4" src="/images/bots/superbot.svg" />
     </nuxt-link>
     <!-- Full Name -->
@@ -42,7 +42,7 @@
           <p class="text-sm ml-1">Score:</p>
           <p v-for="task in member.solvedTasks" :key="task.id" class="text-sm"> {{ task.points }} </p>
        </div>
-        <div class="flex md:justify-end">
+        <div v-show="auth!=null" class="flex md:justify-end">
             <font-awesome-icon  icon="clock" size="xs" class="m-1"/>
               
             <p class="text-sm ml-1">Last seen online:</p>
