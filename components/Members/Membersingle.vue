@@ -14,7 +14,7 @@
         <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
           {{ $t('button.editProfile') }}</nuxt-link>
         <div v-if="titles">
-          <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+          <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title }}</p>
         </div>
       </section>
     </div>
@@ -30,7 +30,7 @@
           <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
             {{ $t('button.editProfile') }}</nuxt-link>
           <div v-if="titles">
-            <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+            <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title }}</p>
           </div>
         </section>
       </div>
@@ -86,7 +86,7 @@
           <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
-              {{ interest | lowercase | capitalize({ onlyFirstLetter: true }) }}
+              {{ interest }}
             </span>
           </div>
         </section>
