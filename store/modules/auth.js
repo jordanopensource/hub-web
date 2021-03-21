@@ -6,16 +6,20 @@ import axios from 'axios';
 const state = () => {
   return {
     auth: null,
-    user: null
+    user: null,
+    loginStatus: null
   }
 };
 
 const getters = {
   auth(state) {
-    return (state.auth)
+    return state.auth
   },
   user(state) {
-    return (state.user)
+    return state.user
+  },
+  loginStatus(state) {
+    return state.loginStatus
   }
 };
 
@@ -25,6 +29,9 @@ const mutations = {
   },
   setUser(state, user) {
     state.user = user
+  },
+  setLoginStatus(state, loginStatus) {
+    state.loginStatus = loginStatus
   }
 };
 
@@ -52,6 +59,7 @@ const actions = {
   async login({commit}, credintials) {
     await axios.post(process.env.baseUrl + '/auth/local', credintials)
       .then(response => {
+        commit('setLoginStatus', true)
         const auth = {
           accessToken: response.data.jwt,
           username: response.data.user.username,
@@ -65,7 +73,11 @@ const actions = {
           secure: true
         })
       })
-      .catch(e => error(e))
+      .catch(e => {
+        if (e.response.status === 400) {
+          commit('setLoginStatus', false)
+        }
+      })
   }
 };
 
