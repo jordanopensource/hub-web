@@ -2,8 +2,9 @@
   <div class="flex flex-wrap md:flex-no-wrap w-full pt-4 border-t border-dotted">
     <!-- Profile Picture -->
     <nuxt-link :to="memberLink">
-      <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture ltr:mr-4 rtl:ml-4 mb-4" />
-      <img v-else class="profilePicture ltr:mr-4 rtl:ml-4 mb-4" src="/images/bots/member-default-profile-pic.png" />
+      <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small"
+        class="profilePicture ltr:mr-4 rtl:ml-4 mb-2" />
+      <img v-else class="profilePicture ltr:mr-4 rtl:ml-4 mb-2" src="/images/bots/member-default-profile-pic.png" />
     </nuxt-link>
     <!-- Full Name -->
     <div class="mb-4">
