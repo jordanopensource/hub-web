@@ -38,6 +38,12 @@
           {{ member.memberSince ? dateTrans(member.memberSince, "YYYYMMDD"): dateTrans(member.created_at, "YYYYMMDD") | dateTrans(member.created_at, "YYYYMMDD")}}
         </p>
       </div>
+      <!-- Member Points ( Show If logged in )-->
+      <div v-show="member.solvedTasks.length!=0 && auth!=null" class="flex md:justify-end">
+        <font-awesome-icon icon="star" size="xs" class="m-1" />
+        <p class="text-sm ml-1">Score:</p>
+        <p v-for="task in member.solvedTasks" :key="task.id" class="text-sm"> {{ task.points }} </p>
+      </div>
     </div>
   </div>
 </template>
@@ -57,6 +63,9 @@
         type: Object,
         required: true
       }
+    },
+    data: {
+      task: Object,
     },
     computed: {
       memberLink() {
@@ -79,6 +88,9 @@
         }
       },
     },
+    auth() {
+        return this.$store.getters.auth;
+      },
     methods:{
       dateTrans(from, now) {
         return moment(from, now).fromNow().slice(0, -4);
