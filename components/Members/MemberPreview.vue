@@ -44,6 +44,10 @@
         <p class="text-sm ml-1">Score:</p>
         <p v-for="task in member.solvedTasks" :key="task.id" class="text-sm"> {{ task.points }} </p>
       </div>
+      <!-- Badges -->
+      <div class="flex md:absolute bottom-0 right-0 md:justify-end">
+        <badges v-if="member.badges" :badges="member.badges" />
+      </div>
     </div>
   </div>
 </template>
@@ -109,6 +113,10 @@
 
   .interest {
     @apply inline-block m-2 py-1 rounded-md px-4 bg-grey90 opacity-90;
+  }
+  /deep/ .badges img {
+    width: 36px;
+    height: 36px;
   }
 
 </style>
