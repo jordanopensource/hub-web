@@ -40,6 +40,7 @@
           this.$emit('loggedIn')
           } else {
             this.loginFailed = true
+            this.password=''
           }
         })
       },
