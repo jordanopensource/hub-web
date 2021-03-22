@@ -114,6 +114,7 @@
   .interest {
     @apply inline-block m-2 py-1 rounded-md px-4 bg-grey90 opacity-90;
   }
+  
   /deep/ .badges img {
     width: 36px;
     height: 36px;
