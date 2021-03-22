@@ -27,12 +27,25 @@
         </section>
       </div>
     </div>
+    <!-- The Right Block -->
+    <div class="relative space-y-4">
+      <!-- Membership Type Icon -->
+      <div class="flex md:justify-end">
+        <span :class="[member.membershipType == 'active' ? 'text-josa-blue-dark':'text-josa-blue']">
+          <font-awesome-icon icon="circle" size="xs" class="m-1" /></span>
+        <p class="member-id mr-2 font-bold text-sm">{{ member.membershipId }}</p>
+        <p class="text-sm text-gray-600">Member for
+          {{ member.memberSince ? dateTrans(member.memberSince, "YYYYMMDD"): dateTrans(member.created_at, "YYYYMMDD") | dateTrans(member.created_at, "YYYYMMDD")}}
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
   import appImage from '~/components/UI/appImage';
   import badges from '~/components/Members/Badges';
+  import moment from 'moment';
   export default {
     name: 'MemberPreview',
     components: {
@@ -65,6 +78,11 @@
           return null
         }
       },
+    },
+    methods:{
+      dateTrans(from, now) {
+        return moment(from, now).fromNow().slice(0, -4);
+      },
     }
   }
 
@@ -76,6 +94,7 @@
     height: 150px;
     object-fit: cover;
   }
+
   .interest {
     @apply inline-block m-2 py-1 rounded-md px-4 bg-grey90 opacity-90;
   }
