@@ -17,7 +17,8 @@ export default {
     login: "تسجيل الدخول",
     logout: "تسجيل الخروج",
     email: 'الايميل او اسم المستخدم',
-    password: 'كلمة المرور'
+    password: 'كلمة المرور',
+    incorrect:'هنالك خطأ في الايميل أو كلمة المرور',
   },
   // Meta
   meta: {
