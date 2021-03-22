@@ -6,15 +6,26 @@
         class="profilePicture ltr:mr-4 rtl:ml-4 mb-2" />
       <img v-else class="profilePicture ltr:mr-4 rtl:ml-4 mb-2" src="/images/bots/member-default-profile-pic.png" />
     </nuxt-link>
-    <!-- Full Name -->
-    <div class="mb-4">
+    <!-- The Left Block -->
+    <div class='mx-4 relative flex-grow'>
+      <!-- Full Name -->
       <nuxt-link :to="memberLink">
-        <h2>{{ member['fullName_' + $i18n.locale] | capitalize }}</h2>
+        <h2 class="block">{{ member['fullName_' + $i18n.locale] | capitalize }}</h2>
       </nuxt-link>
-      <!-- Membership Type -->
-      <p class="my-2">{{ member.membershipType | capitalize }}</p>
-      <!-- Badges -->
-      <badges v-if="member.badges" :badges="member.badges" />
+      <!-- Title -->
+      <div v-if="titles">
+        <p v-for="(title,index) in titles" :key="index" class="text-sm block">{{ title }}</p>
+      </div>
+      <!-- Intersets Section -->
+      <div>
+        <section class="md:absolute bottom-0 left-0" v-if="interests.length">
+          <div class="-mx-3">
+            <span v-for="(interest,index) in interests.slice(0,3)" :key="index" class="interest inline-block">
+              {{ interest }}
+            </span>
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </template>
@@ -38,6 +49,22 @@
       memberLink() {
         return this.localePath('/members/' + this.member.id)
       },
+      interests() {
+        try {
+          const interests = this.$options.filters.stringToArray(this.member.interests)
+          return interests
+        } catch {
+          return []
+        }
+      },
+      titles() {
+        try {
+          const titles = this.$options.filters.stringToArray(this.member.titles)
+          return titles
+        } catch {
+          return null
+        }
+      },
     }
   }
 
@@ -48,6 +75,9 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
+  }
+  .interest {
+    @apply inline-block m-2 py-1 rounded-md px-4 bg-grey90 opacity-90;
   }
 
 </style>
