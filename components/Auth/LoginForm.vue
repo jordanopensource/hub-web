@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submit" class="w-full">
-    <AppControlInput v-model="username" controlType="email" :placeholder="$t('auth.email')" required></AppControlInput>
+    <AppControlInput v-model="username" controlType="input" :placeholder="$t('auth.email')" required></AppControlInput>
     <AppControlInput v-model="password" controlType="password" :placeholder="$t('auth.password')" required></AppControlInput>
     <h6 v-if="loginFailed" class="text-red-600">{{ $t('auth.incorrect') }}</h6>
     <nuxt-link to='/forgot-password' class="italic text-sm text-josa-blue">{{ $t('auth.forgotPassword') }}</nuxt-link>
