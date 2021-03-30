@@ -7,7 +7,7 @@
       <img v-else class="profilePicture ltr:mr-4 rtl:ml-4 mb-2" src="/images/bots/member-default-profile-pic.png" />
     </nuxt-link>
     <!-- The Left Block -->
-    <div class='mx-4 relative flex-grow'>
+    <div class='md:mx-4 relative space-y-4 flex-grow'>
       <!-- Full Name -->
       <nuxt-link :to="memberLink">
         <h2 class="block">{{ member['fullName_' + $i18n.locale] | capitalize }}</h2>
@@ -19,8 +19,8 @@
       <!-- Intersets Section -->
       <div>
         <section class="md:absolute bottom-0 left-0" v-if="interests.length">
-          <div class="-mx-3">
-            <span v-for="(interest,index) in interests.slice(0,3)" :key="index" class="interest inline-block">
+          <div>
+            <span v-for="(interest,index) in interests.slice(0,3)" :key="index" class="interest">
               {{ interest }}
             </span>
           </div>
@@ -28,19 +28,19 @@
       </div>
     </div>
     <!-- The Right Block -->
-    <div class="relative space-y-4">
+    <div class="relative space-y-4 margin">
       <!-- Membership Type Icon -->
-      <div class="flex md:justify-end">
+      <div class="flex md:justify-end ">
         <span :class="[member.membershipType == 'active' ? 'text-josa-blue-dark':'text-josa-blue']">
-          <font-awesome-icon icon="circle" size="xs" class="m-1" /></span>
-        <p class="member-id mr-2 font-bold text-sm">{{ member.membershipId }}</p>
-        <p class="text-sm text-gray-600">Member for
+          <font-awesome-icon icon="circle" size="xs" class="mr-1 my-1" /></span>
+        <p class="member-id mr-2 text-gray-600 text-sm">{{ member.membershipId }}</p>
+        <p class="text-sm">Member for
           {{ member.memberSince ? dateTrans(member.memberSince, "YYYYMMDD"): dateTrans(member.created_at, "YYYYMMDD") | dateTrans(member.created_at, "YYYYMMDD")}}
         </p>
       </div>
       <!-- Member Points ( Show If logged in )-->
       <div v-show="member.solvedTasks.length!=0 && auth!=null" class="flex md:justify-end">
-        <font-awesome-icon icon="star" size="xs" class="m-1" />
+        <font-awesome-icon icon="star" size="xs" class="mr-1 my-1" />
         <p class="text-sm ml-1">Score:</p>
         <p v-for="task in member.solvedTasks" :key="task.id" class="text-sm"> {{ task.points }} </p>
       </div>
@@ -110,9 +110,10 @@
     height: 150px;
     object-fit: cover;
   }
-
+  
   .interest {
-    @apply inline-block m-2 py-1 rounded-md px-4 bg-grey90 opacity-90;
+    
+    @apply inline-block mr-2 mb-2 py-1 rounded-md px-4 bg-grey90 opacity-90;
   }
   
   /deep/ .badges img {
@@ -120,4 +121,9 @@
     height: 36px;
   }
 
+  @media (max-width:568px) {
+    .margin{
+     @apply mt-4;
+    }
+  }
 </style>
