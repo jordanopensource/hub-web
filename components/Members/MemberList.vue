@@ -22,6 +22,11 @@
         </div>
       </span>
     </div>
+    <div>
+      <input type="checkbox" name="contribBox" v-model="includeContributors" />
+        <label for="contribBox">Show contributors that are not members</label>
+        <h1>{{includeContributors}}</h1>
+    </div>
     <!-- Members preview -->
     <section>
       <MemberPreview v-for="member in displayedMembers" :key="member.id" :member="member" />
@@ -48,7 +53,9 @@
       return {
         sortValue: 'memberSinceDESC',
         numberPerPage: 10,
-        currentPage: 1
+        currentPage: 1,
+        includeContributors: false,
+
       }
     },
     components: {
