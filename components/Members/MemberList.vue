@@ -24,7 +24,7 @@
     </div>
     <div>
       <input type="checkbox" name="contribBox" v-model="includeContributors" />
-        <label for="contribBox" @click="() => {includeContributors= !includeContributors}">Show contributors that are not members</label>
+        <label for="contribBox" @click="() => {includeContributors= !includeContributors}" class="select-none">Show contributors that are not members</label>
     </div>
     <!-- Members preview -->
     <section>
