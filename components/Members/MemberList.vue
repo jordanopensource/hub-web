@@ -24,8 +24,7 @@
     </div>
     <div>
       <input type="checkbox" name="contribBox" v-model="includeContributors" />
-        <label for="contribBox">Show contributors that are not members</label>
-        <h1>{{includeContributors}}</h1>
+        <label for="contribBox" @click="() => {includeContributors= !includeContributors}">Show contributors that are not members</label>
     </div>
     <!-- Members preview -->
     <section>
@@ -67,6 +66,7 @@
     },
     computed: {
       loadedMembers() {
+
         return this.$store.getters.loadedMembers;
       },
       membersCount() {
@@ -118,7 +118,17 @@
       calculateCurrentPage(num) {
         this.currentPage = this.limitNumberWithinRange(num, 1, this.calculatePages())
         return this.currentPage
-      }
+      },
+
+      filterMembers() {
+        if(includeContributors) {
+          this.loadedMembers
+        }
+        else {
+
+        }
+      
+      },
     }
   }
 
