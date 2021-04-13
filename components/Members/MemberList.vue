@@ -23,8 +23,7 @@
       </span>
     </div>
     <div>
-      <input type="checkbox" name="contribBox" v-model="includeContributors" />
-        <label for="contribBox" @click="() => {includeContributors= !includeContributors}" class="select-none">Show contributors that are not members</label>
+      <toggleButton id="showContributors" :value="false" v-model="includeContributors" :label="$t('members.showContrib')"/>
     </div>
     <!-- Members preview -->
     <section>
@@ -46,6 +45,7 @@
   import Vue2Filters from 'vue2-filters';
   import MemberPreview from '~/components/Members/MemberPreview';
   import axios from 'axios';
+import ToggleButton from '../FormComponents/ToggleButton.vue';
   export default {
     mixins: [Vue2Filters.mixin],
     data() {
@@ -58,7 +58,8 @@
       }
     },
     components: {
-      MemberPreview
+      MemberPreview,
+      ToggleButton,
     },
     created() {
       this.$store.dispatch('fetchUsers');
