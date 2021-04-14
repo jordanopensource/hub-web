@@ -129,22 +129,13 @@
     @apply cursor-default;
     @apply text-josa-warm-grey;
   }
-
-  a.disabled:hover .fa-w-10{
-    @apply text-josa-warm-grey;
-  }
   
    .fa-w-10{
-    @apply text-josa-blue;
-    font-size: 15px;
+    @apply text-josa-blue-dark text-base;
   }
 
   a.active {
-    background: #3897c0;
-    border-radius: 20%;
-    color: white;
-    padding: 0.3em 0.6em 0.3em 0.6em;
-    margin: 5px;
+    @apply m-1 py-1 pb-1 text-white rounded transition bg-josa-blue-dark;
 }
 
 </style>
