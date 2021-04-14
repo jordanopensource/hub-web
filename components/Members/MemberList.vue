@@ -67,8 +67,14 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
     },
     computed: {
       loadedMembers() {
-
-        return this.$store.getters.loadedMembers;
+          return this.$store.getters.loadedMembers;
+      },
+      filterContributors() {
+        var filtered = this.loadedMembers;
+        if(!this.includeContributors) {
+          filtered =  filtered.filter(member => member.membershipType != "contributor");
+        }
+        return filtered;
       },
       membersCount() {
         return this.$store.getters.membersCount;
@@ -93,14 +99,14 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         }
       },
       displayedMembers() {
-        const sortedArray = this.orderBy(this.loadedMembers, this.sortBy[0], this.sortBy[1])
+        const sortedArray = this.orderBy(this.filterContributors, this.sortBy[0], this.sortBy[1])
         const tempArray = this.chunkArray(sortedArray, this.numberPerPage)
         return tempArray[this.currentPage - 1]
       }
     },
     methods: {
       calculatePages() {
-        return Math.ceil(this.loadedMembers.length / this.numberPerPage)
+        return Math.ceil(this.filterContributors.length / this.numberPerPage)
       },
       chunkArray(myArray, chunkSize) {
         var index = 0;
@@ -121,15 +127,6 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         return this.currentPage
       },
 
-      filterMembers() {
-        if(includeContributors) {
-          this.loadedMembers
-        }
-        else {
-
-        }
-      
-      },
     }
   }
 
