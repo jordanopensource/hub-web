@@ -6,9 +6,7 @@ const state = {
   membersCount: 1,
   regRes: null,
   updateRes: null,
-  loadedUser: null,
-  excludedContributors: [],
-
+  loadedUser: null
 };
 
 const getters = {
@@ -27,10 +25,6 @@ const getters = {
   updateRes(state) {
     return (state.updateRes)
   },
-  excludedContributors(state) {
-    return (state.excludedContributors)
-  },
-
 };
 
 const mutations = {
@@ -52,14 +46,10 @@ const mutations = {
   setUpdateRes(state, res) {
     state.updateRes = res
   },
-  setExcludedContributors(state, res) {
-    state.excludedContributors = res
-  },
-
 };
 
 const actions = {
-  async fetchUsers(vuexContext, context) {      //gets all users
+  async fetchUsers(vuexContext, context) {
     let request
     if (vuexContext.getters.auth) {
       const token = vuexContext.getters.auth.accessToken;
@@ -137,32 +127,6 @@ const actions = {
       .catch(error => {
         vuexContext.commit("setUpdateRes", error.response);
       })
-  },
-  async fetchExcludeContributors(vuexContext, context) {      //gets users except contributors
-    let request
-    if (vuexContext.getters.auth) {
-      const token = vuexContext.getters.auth.accessToken;
-      const header = {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }
-      let path = process.env.baseUrl + "/users?_sort=memberSince:DESC&membershipType=supporter&membershipType=active"
-      request = [path, header]
-    } else {
-      request = [process.env.baseUrl + "/users/public?_sort=memberSince:DESC&membershipType=supporter&membershipType=active"]
-    }
-    await axios.get(...request)
-      .then(res => {
-        const membersArray = []
-        for (const key in res.data) {
-          membersArray.push({
-            ...res.data[key]
-          })
-        }
-        vuexContext.commit("setExcludedContributors", membersArray);
-      })
-      .catch(e => context.error(e));
   },
 };
 
