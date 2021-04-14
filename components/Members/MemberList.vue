@@ -28,12 +28,19 @@
     </section>
     <!-- Pagination -->
     <div class="pagination pt-6 text-center border-t border-dotted">
-      <span class="py-2"><a @click="calculateCurrentPage(currentPage - 1)"
-          :class="currentPage == 1 ? 'disabled' : ''">{{ $t('pagination.prev') }}</a></span>
-      <span class="py-2"><a @click="currentPage = i" v-for="i in calculatePages()" :key="i" class="p-2"
-          :class="i == currentPage ? 'active' : ''">{{ $t(i) }}</a></span>
+      <span class="py-2">
+        <a @click="calculateCurrentPage(currentPage - 1)" :class="currentPage == 1 ? 'disabled' : ''">
+          <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fa', 'chevron-left']" /></a>
+      </span>
+      <span class="py-2">
+        <a @click="currentPage = i" v-for="i in calculatePages()" :key="i" class="p-2"
+          :class="i == currentPage ? 'active' : ''">{{ $t(i) }}</a>
+      </span>
       <span class="py-2"><a @click="calculateCurrentPage(currentPage + 1)"
-          :class="currentPage == calculatePages() ? 'disabled' : ''">{{ $t('pagination.next') }}</a></span>
+          :class="currentPage == calculatePages() ? 'disabled' : ''">
+           <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fa', 'chevron-right']" />
+          </a>
+      </span>
     </div>
   </div>
 </template>
@@ -118,12 +125,26 @@
 </script>
 
 <style scoped>
-  a.disabled {
-    @apply cursor-default text-josa-warm-grey;
+  a.disabled .fa-w-10{
+    @apply cursor-default;
+    @apply text-josa-warm-grey;
   }
 
-  a.disabled:hover {
-    @apply text-josa-warm-grey
+  a.disabled:hover .fa-w-10{
+    @apply text-josa-warm-grey;
   }
+  
+   .fa-w-10{
+    @apply text-josa-blue;
+    font-size: 15px;
+  }
+
+  a.active {
+    background: #3897c0;
+    border-radius: 20%;
+    color: white;
+    padding: 0.3em 0.6em 0.3em 0.6em;
+    margin: 5px;
+}
 
 </style>
