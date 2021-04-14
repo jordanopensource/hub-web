@@ -22,8 +22,28 @@
           <hr>
         </div>
         <div id="copyright-info" class="">
-          <img class="cc-logo ltr:pr-4 rtl:pl-4" src="~/static/logo/cc.svg" alt="cc-logo">
-          <p>{{ $t('copyright.info') }}</p>
+          <div class="column cc-footer-license">
+            <div class="license-icons">
+              <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"
+                title="Creative Commons Attribution 4.0 International license">
+                <i class="cc-icon-cc">
+                  <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fab', 'creative-commons']" />
+                </i>
+                <i class="cc-icon-cc-by">
+                  <font-awesome-icon class="icon ltr:mr-3 rtl:ml-3" :icon="['fab', 'creative-commons-by']" />
+                </i>
+              </a>
+            </div>
+            <aside>
+              <div xmlns:cc="https://creativecommons.org/ns#" about="https://creativecommons.org">
+                {{ $t('copyright.except') }}
+                <a class="subfoot" href="https://jordanopensource.org/info/privacypolicy"> noted,</a>
+                {{ $t('copyright.content') }}
+                <a class="subfoot" href="https://creativecommons.org/licenses/by/4.0/" rel="license">
+                  {{ $t('copyright.creative') }}</a>
+              </div>
+            </aside>
+          </div>
         </div>
       </div>
     </div>
@@ -55,7 +75,7 @@
       }
     },
     components: {
-      menuItems
+      menuItems,
     },
     computed: {
       menus() {
@@ -67,9 +87,35 @@
 </script>
 
 <style scoped>
+
   #footer {
     @apply bg-josa-black text-josa-warm-grey-light;
     line-height: 1.6;
+  }
+
+  .cc-footer p {
+    margin-bottom: .25em;
+    font-family: lato;
+  }
+
+  .license-icons {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: .25em;
+    text-align: left;
+  }
+
+  .subfoot {
+    text-decoration: underline;
+    font-size: 13px;
+  }
+
+  .fa-creative-commons.fa-w-16 {
+    color: #ffffff;
+  }
+
+  .fa-creative-commons-by.fa-w-16 {
+    color: #ffffff;
   }
 
   .container {
@@ -138,7 +184,7 @@
 
   @screen lg {
     .logo {
-      @apply w-2/3;
+      @apply w-4/5;
     }
 
     #copyright-info {
