@@ -86,7 +86,9 @@ export default {
     activities: 'JOSA Activities',
     contributions: 'Contributions',
     commits: 'Commits on',
-    myProfile: 'My Profile'
+    myProfile: 'My Profile',
+    showContrib: 'Show contributors that are not members',
+
   },
   // Sort
   sort: {
