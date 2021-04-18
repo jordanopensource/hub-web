@@ -88,7 +88,7 @@ export default {
     commits: 'Commits on',
     myProfile: 'My Profile',
     showContrib: 'Show contributors that are not members',
-
+    searchMembers: 'Filter by name',
   },
   // Sort
   sort: {

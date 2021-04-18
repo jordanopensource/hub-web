@@ -3,6 +3,8 @@
     <div class="py-6 flex flex-wrap md:flex-no-wrap justify-between">
       <!-- Members Count  -->
       <p class="display-lead text-lg py-2">{{ membersCount }} {{ $t('members.members') }}</p>
+      <!-- Filter by name -->
+      <AppControlInput v-model="searchName" class="flex-grow md:mr-8" controlType="input" :placeholder="$t('members.searchMembers')"></AppControlInput>
       <!-- Sort -->
       <span class="sort py-2">
         <p class="inline-block uppercase text-josa-blue ltr:mr-2 rtl:ml-2">{{$t('sort.sortBy')}}</p>
@@ -22,12 +24,18 @@
         </div>
       </span>
     </div>
+    <!-- Show contributors button -->
     <div>
       <toggleButton id="showContributors" :value="false" v-model="includeContributors" :label="$t('members.showContrib')"/>
     </div>
     <!-- Members preview -->
     <section>
-      <MemberPreview v-for="member in displayedMembers" :key="member.id" :member="member" />
+      <template v-if="searchName">
+        <MemberPreview v-for="member in filterBy(loadedMembers, searchName, 'fullName_en')" :key="member.id" :member="member"/>
+      </template>
+      <template v-else>
+        <MemberPreview v-for="member in displayedMembers" :key="member.id" :member="member"/>
+      </template>     
     </section>
     <!-- Pagination -->
     <div class="pagination pt-6 text-center border-t border-dotted">
@@ -46,6 +54,7 @@
   import MemberPreview from '~/components/Members/MemberPreview';
   import axios from 'axios';
 import ToggleButton from '../FormComponents/ToggleButton.vue';
+  import AppControlInput from '../FormComponents/AppControlInput.vue';
   export default {
     mixins: [Vue2Filters.mixin],
     data() {
@@ -54,12 +63,15 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         numberPerPage: 10,
         currentPage: 1,
         includeContributors: false,
+        searchName: "",
 
       }
     },
     components: {
       MemberPreview,
       ToggleButton,
+      AppControlInput,
+
     },
     created() {
       this.$store.dispatch('fetchUsers');
@@ -99,14 +111,14 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         }
       },
       displayedMembers() {
-        const sortedArray = this.orderBy(this.filterContributors, this.sortBy[0], this.sortBy[1])
+        const sortedArray = this.orderBy(this.loadedMembers, this.sortBy[0], this.sortBy[1])
         const tempArray = this.chunkArray(sortedArray, this.numberPerPage)
         return tempArray[this.currentPage - 1]
       }
     },
     methods: {
       calculatePages() {
-        return Math.ceil(this.filterContributors.length / this.numberPerPage)
+        return Math.ceil(this.loadedMembers.length / this.numberPerPage)
       },
       chunkArray(myArray, chunkSize) {
         var index = 0;
