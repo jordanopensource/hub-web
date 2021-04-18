@@ -1,8 +1,8 @@
 <template>
   <div class="w-full">
-    <div class="py-6 flex flex-wrap md:flex-no-wrap justify-between">
-      <!-- Members Count  -->
-      <p class="display-lead text-lg py-2">{{ membersCount }} {{ $t('members.members') }}</p>
+    <!-- Members Count  -->
+    <p class="display-lead text-lg py-2">{{ membersCount }} {{ $t('members.members') }}</p>
+    <div class="py-6 flex flex-col-reverse md:flex-row md:justify-between md:items-center">
       <!-- Filter by name -->
       <AppControlInput v-model="searchName" class="flex-grow md:mr-8" controlType="input" :placeholder="$t('members.searchMembers')"></AppControlInput>
       <!-- Sort -->
@@ -52,8 +52,8 @@
 <script>
   import Vue2Filters from 'vue2-filters';
   import MemberPreview from '~/components/Members/MemberPreview';
-  import axios from 'axios';
-import ToggleButton from '../FormComponents/ToggleButton.vue';
+  import axios from 'axios';  
+  import ToggleButton from '../FormComponents/ToggleButton.vue';
   import AppControlInput from '../FormComponents/AppControlInput.vue';
   export default {
     mixins: [Vue2Filters.mixin],
