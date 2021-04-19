@@ -31,10 +31,10 @@
     <!-- Members preview -->
     <section>
       <template v-if="searchName">
-        <MemberPreview v-for="member in filterBy(loadedMembers, searchName, 'fullName_en')" :key="member.id" :member="member"/>
+        <MemberPreview v-for="member in filterBy(filterContributors, searchName, 'fullName_en')" :key="member.id" :member="member"/>
       </template>
       <template v-else>
-        <MemberPreview v-for="member in displayedMembers" :key="member.id" :member="member"/>
+        <MemberPreview v-for="member in filterContributors" :key="member.id" :member="member"/>
       </template>     
     </section>
     <!-- Pagination -->
