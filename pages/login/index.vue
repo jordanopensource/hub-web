@@ -2,7 +2,7 @@
   <div id="login-page">
     <h2 class="title m-0">{{ loginMeta['title_' + $i18n.locale] }}</h2>
     <p class="display-lead py-8">{{ loginMeta['description_' + $i18n.locale] }}</p>
-    <loginForm class="border-t border-b border-dotted py-4"/>
+    <loginForm @loggedIn="postLogin" class="border-t border-b border-dotted py-4" />
   </div>
 </template>
 
@@ -14,13 +14,31 @@
     layout: 'default',
     middleware: 'notAuthenticated',
     components: {
-      loginForm
+      loginForm,
+      from: null
     },
     async asyncData(context) {
       const pageMeta = await axios.get(process.env.baseUrl + '/page-metas?pageId=login');
       return {
         loginMeta: pageMeta.data[0]
       }
+    },
+    methods: {
+      postLogin() {
+        this.leave();
+      },
+      leave() {
+        if (this.from.name) {
+          this.$router.push(this.from.path)
+        } else {
+          this.$router.push('/')
+        }
+      }
+    },
+    beforeRouteEnter(to, from, next) {
+      next(vm => {
+        vm.from = from
+      })
     }
   }
 

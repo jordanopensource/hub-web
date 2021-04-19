@@ -64,6 +64,7 @@ export default {
     passwordConfirmation: 'Password Confirmation',
     noMatch: 'Passwords are not matched!',
     fail: 'Something went wrong! Please try again later.',
+    incorrect:'Incorrect username or password',
     success: 'Your password has been successfully changed.',
     forgotPostTitle: 'Reset password email sent!',
     forgotPostText: 'Please check your email for the reset password email and follow instructions to set your credintials.',
@@ -85,7 +86,9 @@ export default {
     activities: 'JOSA Activities',
     contributions: 'Contributions',
     commits: 'Commits on',
-    myProfile: 'My Profile'
+    myProfile: 'My Profile',
+    showContrib: 'Show contributors that are not members',
+
   },
   // Sort
   sort: {

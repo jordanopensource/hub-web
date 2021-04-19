@@ -5,7 +5,7 @@
       <div class="flex flex-row">
         <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small"
           class="profilePicture ltr:mr-8 rtl:ml-8" />
-        <img v-else class="profilePicture ltr:mr-8 rtl:ml-8" src="/images/bots/superbot.svg" />
+        <img v-else class="profilePicture ltr:mr-8 rtl:ml-8" src="/images/bots/member-default-profile-pic.png" />
         <div>
           <h4 class="title title-small min-content">{{ member.fullName_en | capitalize }}</h4>
         </div>
@@ -14,7 +14,7 @@
         <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
           {{ $t('button.editProfile') }}</nuxt-link>
         <div v-if="titles">
-          <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+          <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title }}</p>
         </div>
       </section>
     </div>
@@ -22,7 +22,7 @@
     <div class="w-full flex-wrap md:flex-no-wrap hidden md:flex">
       <div class="side md:ltr:mr-8 md:rtl:ml-8 mb-8">
         <appImage v-if="member.profilePicture" :image="member.profilePicture" size="small" class="profilePicture" />
-        <img v-else class="profilePicture" src="/images/bots/superbot.svg" />
+        <img v-else class="profilePicture" src="/images/bots/member-default-profile-pic.png" />
       </div>
       <div class="main">
         <section class="name-section">
@@ -30,7 +30,7 @@
           <nuxt-link v-if="ifMe()" tag="a" to="/me/edit" class="mb-4 inline-block button button-blue">
             {{ $t('button.editProfile') }}</nuxt-link>
           <div v-if="titles">
-            <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title | capitalize }}</p>
+            <p v-for="(title,index) in titles" :key="index" class="display-lead">{{ title }}</p>
           </div>
         </section>
       </div>
@@ -86,7 +86,7 @@
           <h3>{{ $t('members.interests') }}</h3>
           <div class="-mx-2">
             <span v-for="(interest,index) in interests" :key="index" class="interest">
-              {{ interest | lowercase | capitalize({ onlyFirstLetter: true }) }}
+              {{ interest }}
             </span>
           </div>
         </section>
