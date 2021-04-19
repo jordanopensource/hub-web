@@ -22,6 +22,9 @@
         </div>
       </span>
     </div>
+    <div>
+      <toggleButton id="showContributors" :value="false" v-model="includeContributors" :label="$t('members.showContrib')"/>
+    </div>
     <!-- Members preview -->
     <section>
       <MemberPreview v-for="member in displayedMembers" :key="member.id" :member="member" />
@@ -54,6 +57,7 @@
   import Vue2Filters from 'vue2-filters';
   import MemberPreview from '~/components/Members/MemberPreview';
   import axios from 'axios';
+import ToggleButton from '../FormComponents/ToggleButton.vue';
   export default {
     mixins: [Vue2Filters.mixin],
     data() {
@@ -61,10 +65,12 @@
         sortValue: 'memberSinceDESC',
         numberPerPage: 10,
         currentPage: 1,
+        includeContributors: false,
       }
     },
     components: {
-      MemberPreview
+      MemberPreview,
+      ToggleButton,
     },
     created() {
       this.$store.dispatch('fetchUsers');
@@ -72,7 +78,14 @@
     },
     computed: {
       loadedMembers() {
-        return this.$store.getters.loadedMembers;
+          return this.$store.getters.loadedMembers;
+      },
+      filterContributors() {
+        var filtered = this.loadedMembers;
+        if(!this.includeContributors) {
+          filtered =  filtered.filter(member => member.membershipType != "contributor");
+        }
+        return filtered;
       },
       membersCount() {
         return this.$store.getters.membersCount;
@@ -97,14 +110,14 @@
         }
       },
       displayedMembers() {
-        const sortedArray = this.orderBy(this.loadedMembers, this.sortBy[0], this.sortBy[1])
+        const sortedArray = this.orderBy(this.filterContributors, this.sortBy[0], this.sortBy[1])
         const tempArray = this.chunkArray(sortedArray, this.numberPerPage)
         return tempArray[this.currentPage - 1]
       },
     },
     methods: {
       calculatePages() {
-        return Math.ceil(this.loadedMembers.length / this.numberPerPage)
+        return Math.ceil(this.filterContributors.length / this.numberPerPage)
       },
       chunkArray(myArray, chunkSize) {
         var index = 0;
@@ -164,11 +177,11 @@
   }
 
   a.first::after {
-    content: '  ...'
+    content: '  ...';
   }
 
   a.last::before {
-    content: '... '
+    content: '... ';
   }
 
 </style>
