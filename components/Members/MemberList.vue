@@ -31,12 +31,24 @@
     </section>
     <!-- Pagination -->
     <div class="pagination pt-6 text-center border-t border-dotted">
-      <span class="py-2"><a @click="calculateCurrentPage(currentPage - 1)"
-          :class="currentPage == 1 ? 'disabled' : ''">{{ $t('pagination.prev') }}</a></span>
-      <span class="py-2"><a @click="currentPage = i" v-for="i in calculatePages()" :key="i" class="p-2"
-          :class="i == currentPage ? 'active' : ''">{{ $t(i) }}</a></span>
-      <span class="py-2"><a @click="calculateCurrentPage(currentPage + 1)"
-          :class="currentPage == calculatePages() ? 'disabled' : ''">{{ $t('pagination.next') }}</a></span>
+      <ul>
+        <span class="px-3"><a @click="calculateCurrentPage(currentPage - 1)"
+            :class="currentPage == 1 ? 'disabled' : ''">
+            <font-awesome-icon icon="chevron-left"></font-awesome-icon>
+          </a></span>
+        <span v-for="i in calculatePages()" :key="i">
+          <li
+            v-if="(i == calculatePages() || Math.abs(i - currentPage) < 3) || (i==1 || Math.abs(i - calculatePages()) < 1)">
+            <a class="px-1" href="#" @click="currentPage = i"
+              :class="{current: currentPage === i, last: (i == calculatePages()  && Math.abs(i - currentPage) > 3), first:(i == 1 && Math.abs(i - currentPage) > 3)}">
+              {{i}}</a>
+          </li>
+        </span>
+        <span class="px-3"><a @click="calculateCurrentPage(currentPage + 1)"
+            :class="currentPage == calculatePages() ? 'disabled' : ''">
+            <font-awesome-icon icon="chevron-right"></font-awesome-icon>
+          </a></span>
+      </ul>
     </div>
   </div>
 </template>
@@ -54,7 +66,6 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         numberPerPage: 10,
         currentPage: 1,
         includeContributors: false,
-
       }
     },
     components: {
@@ -102,7 +113,7 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         const sortedArray = this.orderBy(this.filterContributors, this.sortBy[0], this.sortBy[1])
         const tempArray = this.chunkArray(sortedArray, this.numberPerPage)
         return tempArray[this.currentPage - 1]
-      }
+      },
     },
     methods: {
       calculatePages() {
@@ -126,8 +137,7 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
         this.currentPage = this.limitNumberWithinRange(num, 1, this.calculatePages())
         return this.currentPage
       },
-
-    }
+    },
   }
 
 </script>
@@ -139,6 +149,39 @@ import ToggleButton from '../FormComponents/ToggleButton.vue';
 
   a.disabled:hover {
     @apply text-josa-warm-grey
+  }
+
+  a {
+    color: #999;
+  }
+
+  .current {
+    @apply bg-josa-blue-dark;
+    border-radius: 20%;
+
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 0.2px;
+    padding-bottom: 0.5px;
+    color: white;
+  }
+
+  ul {
+    padding: 0;
+    list-style-type: none;
+  }
+
+  li {
+    display: inline;
+    margin: 5px 5px;
+  }
+
+  a.first::after {
+    content: '  ...';
+  }
+
+  a.last::before {
+    content: '... ';
   }
 
 </style>
