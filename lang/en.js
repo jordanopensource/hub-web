@@ -1,7 +1,10 @@
 export default {
   // Footer
   copyright: {
-    info: 'All the content on this website is licensed under a Creative Commons Attribution-ShareAlike Unported license, except where otherwise mentioned.'
+    info: 'Creative Commons Attribution 3.0 Unported License.',
+    except: 'Except where otherwise',
+    content: 'content on this site is licensed under a',
+    creative: 'Creative Commons Attribution 4.0 International license.'
   },
   // Social Media Links
   socialMedia: {
